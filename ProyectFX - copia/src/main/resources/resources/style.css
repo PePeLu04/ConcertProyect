@@ -1,0 +1,19 @@
+.background {
+    -fx-background-color: #f0f0f0;
+}
+
+.title {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+}
+
+.error {
+    -fx-text-fill: #cc0000;
+}
+
+.admin-button {
+    -fx-background-color: #cc0000;
+    -fx-text-fill: white;
+}
+
