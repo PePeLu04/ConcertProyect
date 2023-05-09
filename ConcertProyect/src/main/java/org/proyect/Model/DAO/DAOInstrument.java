@@ -1,6 +1,8 @@
 package org.proyect.Model.DAO;
 
-import org.proyect.Model.DTO.Instrument;
+import org.proyect.Model.DAO.DAO;
+import org.proyect.Model.Domain.Instrument;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,7 +13,7 @@ import java.util.List;
 public class DAOInstrument<instrumento> implements DAO {
     protected Connection conn;
 
-    public DAOInstrument(Connection conn) {
+    public DAOInstrument() {
         this.conn = this.conn;
     }
     @Override

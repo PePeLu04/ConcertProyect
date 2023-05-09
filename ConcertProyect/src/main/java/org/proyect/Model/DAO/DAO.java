@@ -1,6 +1,6 @@
 package org.proyect.Model.DAO;
 
-import org.proyect.Model.DTO.Instrument;
+import org.proyect.Model.Domain.Instrument;
 
 import java.sql.SQLException;
 import java.util.List;

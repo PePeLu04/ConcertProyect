@@ -4,9 +4,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox alignment="CENTER" prefHeight="409.0" prefWidth="469.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.proyect.Controller.PrimaryController">
+<VBox alignment="CENTER" prefHeight="587.0" prefWidth="934.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.proyect.Controller.PrimaryController">
    <children>
-      <Label alignment="TOP_CENTER" prefHeight="23.0" prefWidth="95.0" text="Primary View" translateZ="5.0">
+      <Label alignment="TOP_CENTER" centerShape="false" depthTest="ENABLE" mouseTransparent="true" prefHeight="15.0" prefWidth="138.0" text="Concerts" translateZ="5.0">
          <VBox.margin>
             <Insets />
          </VBox.margin></Label>

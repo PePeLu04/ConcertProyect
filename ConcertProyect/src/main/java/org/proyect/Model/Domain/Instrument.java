@@ -1,4 +1,4 @@
-package org.proyect.Model.DTO;
+package org.proyect.Model.Domain;
 
 import java.util.Objects;
 
