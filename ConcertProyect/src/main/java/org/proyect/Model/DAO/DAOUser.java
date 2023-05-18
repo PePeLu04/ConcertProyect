@@ -1,7 +1,6 @@
 package org.proyect.Model.DAO;
 
-import org.proyect.Model.Connections.ConnectionMySql;
-import org.proyect.Model.Domain.Instrument;
+import org.proyect.Model.Domain.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,34 +8,30 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+/*
+public class DAOUser<user> implements DAO {
+    protected Connection conn;
 
-public class DAOInstrument implements DAO<Instrument> {
-    private Connection conn;
-    public DAOInstrument(Connection conn) {
-        this.conn = conn;
+    public DAOUser() {
+        this.conn = this.conn;
     }
-    public DAOInstrument() {
-        this.conn= ConnectionMySql.getConnect();
-    }
-
     @Override
-    public Instrument insert(Instrument entity) throws SQLException {
+    public void insert(User user) throws SQLException {
         try {
-            PreparedStatement ps = conn.prepareStatement("INSERT INTO instruments (id, name, sound, price) VALUES (?, ?, ?, ?)");
-            ps.setInt(1, entity.getId());
-            ps.setString(2, entity.getName());
-            ps.setString(3, entity.getSound());
-            ps.setDouble(4, entity.getPrice());
+            PreparedStatement ps = conn.prepareStatement("INSERT INTO users (id, name, last_name, location) VALUES (?, ?, ?, ?)");
+            ps.setInt(1, user.getId());
+            ps.setString(2, user.getName());
+            ps.setString(3, user.getLast_name());
+            ps.setString(4, user.getLocation());
             ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return entity;
     }
 
     @Override
-    public Instrument update(Instrument entity) throws SQLException {
+    public void update(Instrument entity) throws SQLException {
         try {
             PreparedStatement ps = conn.prepareStatement("UPDATE instruments SET name = ?, sound = ?, price = ? WHERE id = ?");
             ps.setString(1, entity.getName());
@@ -48,14 +43,13 @@ public class DAOInstrument implements DAO<Instrument> {
             e.printStackTrace();
         }
 
-        return entity;
     }
 
     @Override
-    public void delete(int entity) throws SQLException {
+    public void delete(int id) throws SQLException {
         String sql = "DELETE FROM instruments WHERE id = ?";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setInt(1, entity);
+            stmt.setInt(1, id);
 
             stmt.executeUpdate();
         }
@@ -64,7 +58,7 @@ public class DAOInstrument implements DAO<Instrument> {
 
     @Override
     public Instrument searchById(int id) throws SQLException {
-        String sql = "SELECT * FROM instruments WHERE id = ?";
+        String sql = "SELECT * FROM products WHERE id = ?";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, id);
             try (ResultSet rs = stmt.executeQuery()) {
@@ -99,9 +93,4 @@ public class DAOInstrument implements DAO<Instrument> {
         return instruments;
     }
 
-    public void close() throws Exception {
-        // TODO Auto-generated method stub
-
-    }
-
-}
+}*/

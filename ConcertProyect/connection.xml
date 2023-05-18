@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<conexion>
+<connection>
     <server>jdbc:mysql://localhost</server>
     <database>ConcertDB</database>
     <username>root</username>
     <password></password>
-</conexion>
+</connection>

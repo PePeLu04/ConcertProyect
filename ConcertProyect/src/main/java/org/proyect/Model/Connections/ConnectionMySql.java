@@ -11,15 +11,15 @@ import java.sql.SQLException;
 public class ConnectionMySql {
     private String file = "connection.xml";
     private static ConnectionMySql _newInstance;
-    private static Connection con;
+    private static Connection conn;
 
     private ConnectionMySql() {
         ConnectionData cd = loadXML();
 
         try {
-            con = DriverManager.getConnection(cd.getServer()+"/"+cd.getDatabase(),cd.getUsername(),cd.getPassword());
+            conn = DriverManager.getConnection(cd.getServer()+"/"+cd.getDatabase(),cd.getUsername(),cd.getPassword());
         } catch (SQLException e) {
-            con=null;
+            conn=null;
             throw new RuntimeException(e);
         }
     }
@@ -28,21 +28,21 @@ public class ConnectionMySql {
         if(_newInstance==null){
             _newInstance=new ConnectionMySql();
         }
-        return con;
+        return conn;
     }
 
     public ConnectionData loadXML() {
-        ConnectionData con = new ConnectionData();
+        ConnectionData conn = new ConnectionData();
         JAXBContext jaxbContext;
         try{
             jaxbContext = JAXBContext.newInstance(ConnectionData.class);
             Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-            con = (ConnectionData) jaxbUnmarshaller.unmarshal(new File(file));
+            conn = (ConnectionData) jaxbUnmarshaller.unmarshal(new File(file));
         } catch (JAXBException e) {
             throw new RuntimeException(e);
         }
 
-        return con;
+        return conn;
     }
 
 }
