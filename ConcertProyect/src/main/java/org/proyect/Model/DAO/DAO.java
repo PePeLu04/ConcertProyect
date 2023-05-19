@@ -8,9 +8,9 @@ public interface DAO<T> extends AutoCloseable {
 
     T update(T entity) throws SQLException;
 
-    void delete(int entity) throws SQLException;
+    void delete(String entity) throws SQLException;
 
-    T searchById(int id) throws SQLException;
+    T searchById(String id) throws SQLException;
 
     List<T> findAll() throws SQLException;
 }

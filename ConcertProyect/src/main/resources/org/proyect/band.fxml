@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.proyect.Controller.BandController"
+            prefHeight="400.0" prefWidth="600.0">
+
+    <TableView fx:id="bandTable" layoutX="51.0" layoutY="56.0" prefHeight="234.0" prefWidth="317.0">
+        <columns>
+            <TableColumn fx:id="idColumn" prefWidth="50" text="ID" />
+            <TableColumn fx:id="nameColumn" prefWidth="104.39999389648438" text="Nombre" />
+            <TableColumn fx:id="componentsColumn" prefWidth="87.20002746582031" text="Components" />
+        </columns>
+    </TableView>
+
+</AnchorPane>

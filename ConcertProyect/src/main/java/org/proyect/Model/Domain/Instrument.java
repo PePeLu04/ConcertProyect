@@ -3,16 +3,16 @@ package org.proyect.Model.Domain;
 import java.util.Objects;
 
 public class Instrument {
-    private int id;
+    private String id;
     private String name;
     private String sound;
-    private double price;
+    private String price;
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -32,15 +32,15 @@ public class Instrument {
         this.sound = sound;
     }
 
-    public double getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 
-    public Instrument(int id, String name, String sound, double price) {
+    public Instrument(String id, String name, String sound, String price) {
         this.id = id;
         this.name = name;
         this.sound = sound;
@@ -52,7 +52,7 @@ public class Instrument {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Instrument that = (Instrument) o;
-        return id == that.id && Double.compare(that.price, price) == 0 && Objects.equals(name, that.name) && Objects.equals(sound, that.sound);
+        return id == that.id && CharSequence.compare(that.price, price) == 0 && Objects.equals(name, that.name) && Objects.equals(sound, that.sound);
     }
 
     @Override

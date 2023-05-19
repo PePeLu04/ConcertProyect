@@ -10,7 +10,14 @@
          <VBox.margin>
             <Insets />
          </VBox.margin></Label>
-      <Button fx:id="primaryButton" onAction="#switchToSecondary" text="Switch to Secondary View" />
+      <VBox layoutX="21.0" layoutY="17.0" prefHeight="44.0" prefWidth="32.0" spacing="10">
+         <Button fx:id="menuButton" onAction="#toggleMenu" prefHeight="16.0" prefWidth="28.0" text="☰" />
+         <VBox fx:id="menu" spacing="5" visible="false">
+            <Button text="Bandas" fx:id="BandButton" onAction="#switchToSecondary" />
+            <Button text="Instrumentos" fx:id="InstrumentsButton" onAction="#switchToThird" />
+            <Button text="Conciertos" />
+         </VBox>
+      </VBox>
    </children>
    <padding>
       <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />

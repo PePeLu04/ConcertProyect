@@ -2,11 +2,15 @@ package org.proyect.Controller;
 
 import javafx.event.ActionEvent;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.VBox;
 import org.proyect.Model.DAO.DAOInstrument;
 import org.proyect.Model.Domain.Instrument;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 
 import javafx.fxml.FXML;
@@ -26,25 +30,48 @@ public class InstrumentController {
     @FXML
     private TextField priceField;
     @FXML
+    private TextField idField1;
+    @FXML
+    private TextField idField3;
+
+    @FXML
+    private TextField nameField1;
+
+    @FXML
+    private TextField soundField1;
+
+    @FXML
+    private TextField priceField1;
+    @FXML
     private TableView<Instrument> instrumentTable;
     @FXML
-    private TableColumn<Instrument, Integer> idColumn;
+    private TableColumn<Instrument, String> idColumn;
     @FXML
     private TableColumn<Instrument, String> nameColumn;
     @FXML
     private TableColumn<Instrument, String> soundColumn;
     @FXML
-    private TableColumn<Instrument, Double> priceColumn;
+    private TableColumn<Instrument, String> priceColumn;
+    @FXML
+    private Label resultLabel;
+    private ScheduledExecutorService scheduler;
+    private static final int UPDATE_INTERVAL = 1;
+    public void initialize() {
+        scheduler = Executors.newSingleThreadScheduledExecutor();
+        scheduler.scheduleAtFixedRate(this::searchAllInstruments, 0, UPDATE_INTERVAL, TimeUnit.SECONDS);
+    }
+
 
     DAOInstrument daoInstrument = new DAOInstrument();
+
 
     @FXML
     private Instrument insertInstrument(ActionEvent event) {
         try {
-            int id = Integer.parseInt(idField.getId());
+            String id = idField.getText();
             String name = nameField.getText();
             String sound = soundField.getText();
-            double price = Double.parseDouble(priceField.getText());
+            String price = priceField.getText();
 
             Instrument instrument = new Instrument(id, name, sound, price);
             daoInstrument.insert(instrument);
@@ -64,12 +91,12 @@ public class InstrumentController {
     @FXML
     private void deleteInstrument(ActionEvent event) {
         try {
-            int id = Integer.parseInt(idField.getText());
+            String id = idField3.getText();System.out.println(id);
 
-            Instrument entity = daoInstrument.searchById(id);
+            Instrument instrument = daoInstrument.searchById(id);
 
-            if (entity != null) {
-                daoInstrument.delete(entity.getId());
+            if (instrument != null) {
+                daoInstrument.delete(instrument.getId());
                 System.out.println("Instrument deleted successfully.");
             } else {
                 System.out.println("Instrument with ID " + id + " not found.");
@@ -84,17 +111,44 @@ public class InstrumentController {
     }
 
     @FXML
-    public void updateInstrument(int id, String name, String sound, double price) throws SQLException {
-        Instrument instrument = daoInstrument.searchById(id);
-        instrument.setName(name);
-        instrument.setSound(sound);
-        instrument.setPrice(price);
-        daoInstrument.update(instrument);
+    private void updateInstrument() {
+        String id = idField1.getText();
+        String name = nameField1.getText();
+        String sound = soundField1.getText();
+        String price = priceField1.getText();
+
+        try {
+            Instrument instrument = daoInstrument.searchById(id);
+            if (instrument != null) {
+                instrument.setName(name);
+                instrument.setSound(sound);
+                instrument.setPrice(price);
+                daoInstrument.update(instrument);
+                resultLabel.setText("Instrumento actualizado.");
+            } else {
+                resultLabel.setText("Instrumento no encontrado.");
+            }
+        } catch (SQLException e) {
+            resultLabel.setText("Error al actualizar el instrumento.");
+        }
     }
 
     @FXML
-    public Instrument searchInstrumentById(int id) throws SQLException {
-        return daoInstrument.searchById(id);
+    private void searchInstrument() {
+        String id = idField1.getText();
+        try {
+            Instrument instrument = daoInstrument.searchById(id);
+            if (instrument != null) {
+                nameField1.setText(instrument.getName());
+                soundField1.setText(instrument.getSound());
+                priceField1.setText(instrument.getPrice());
+                resultLabel.setText("Instrumento encontrado.");
+            } else {
+                resultLabel.setText("Instrumento no encontrado.");
+            }
+        } catch (SQLException e) {
+            resultLabel.setText("Error al buscar el instrumento.");
+        }
     }
     public void searchAllInstruments() {
         try {

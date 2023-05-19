@@ -1,21 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<?import javafx.geometry.Insets?>
-
-<VBox alignment="CENTER" spacing="10" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.proyect.Controller.LoginController">
+<VBox alignment="CENTER" prefHeight="723.0" prefWidth="1080.0" spacing="10" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.proyect.Controller.LoginController">
     <padding>
-        <Insets top="100" right="50" bottom="100" left="50"/>
+        <Insets bottom="100" left="50" right="50" top="100" />
     </padding>
+   <Label prefHeight="30.0" prefWidth="79.0" style="-fx-font-size: 20;" text="Concerts" />
 
-    <Label text="Inicio de sesión" style="-fx-font-size: 20px;"/>
+    <Label style="-fx-font-size: 20px;" text="Inicio de sesión" />
 
-    <TextField fx:id="usernameField" promptText="Usuario"/>
-    <PasswordField fx:id="passwordField" promptText="Contraseña"/>
+    <TextField fx:id="usernameField" alignment="TOP_CENTER" maxWidth="200.0" promptText="Usuario" />
+    <PasswordField fx:id="passwordField" alignment="TOP_CENTER" maxWidth="200.0" promptText="Contraseña" />
 
-    <Button text="Iniciar sesión" onAction="#login"/>
-    <Button text="Crear cuenta" onAction="#createAccount"/>
+    <Button onAction="#login" text="Iniciar sesión" />
+    <Button onAction="#createAccount" text="Crear cuenta" />
 </VBox>
-

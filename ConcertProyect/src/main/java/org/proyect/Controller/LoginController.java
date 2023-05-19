@@ -2,18 +2,16 @@ package org.proyect.Controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import org.proyect.App;
 import org.proyect.Model.Connections.ConnectionMySql;
 
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -26,6 +24,12 @@ public class LoginController {
     private PasswordField passwordField;
 
     private Connection connection;
+    private static Scene scene;
+    private Stage stage;
+
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
 
     public void initialize() {
         // Establecer la conexión a la base de datos
@@ -33,13 +37,13 @@ public class LoginController {
     }
 
     @FXML
-    private void login(ActionEvent event) {
+    private void login(ActionEvent event) throws IOException {
         String username = usernameField.getText();
         String password = passwordField.getText();
 
         if (authenticateUser(username, password)) {
             showAlert("Inicio de sesión exitoso", "¡Bienvenido " + username + "!");
-            showMainView();
+            App.setRoot("primary");
         } else {
             showAlert("Inicio de sesión fallido", "Usuario o contraseña incorrectos");
         }
@@ -93,32 +97,6 @@ public class LoginController {
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
-    }
-
-    private void showMainView() {
-        try {
-            // Cargar la vista FXML
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("central.fxml"));
-            Parent root = loader.load();
-
-            // Obtener el controlador de la vista cargada
-            InstrumentController instrumentController = loader.getController();
-
-            // Crear una nueva escena
-            Scene scene = new Scene(root);
-
-            // Obtener la ventana principal (Stage)
-            Stage stage = (Stage) usernameField.getScene().getWindow();
-
-            // Configurar la nueva escena en la ventana principal
-            stage.setScene(scene);
-
-            // Mostrar la ventana principal con la vista FXML cargada
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-            // Manejar cualquier excepción que ocurra durante la carga de la vista FXML
-        }
     }
 
 }
