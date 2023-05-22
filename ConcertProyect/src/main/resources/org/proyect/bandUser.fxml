@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" style="-fx-background-color: #5999D9;" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.proyect.Controller.BandController">
+
+
+    <Label layoutX="66.0" layoutY="9.0" prefHeight="44.0" prefWidth="94.0" text="Bandas">
+        <contextMenu>
+            <ContextMenu>
+                <items>
+                    <MenuItem mnemonicParsing="false" text="Unspecified Action" />
+                </items>
+            </ContextMenu>
+        </contextMenu>
+      <font>
+         <Font size="18.0" />
+      </font>
+    </Label>
+
+    <Label layoutX="405.0" layoutY="94.0" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+    <TextField fx:id="idField" layoutX="405.0" layoutY="112.0" promptText="ID" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+    <Label layoutX="405.0" layoutY="138.0" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+    <TextField fx:id="nameField" layoutX="405.0" layoutY="156.0" promptText="Nombre" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+    <Label layoutX="406.0" layoutY="182.0" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+    <TextField fx:id="componentsField" layoutX="405.0" layoutY="200.0" promptText="Componentes" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+    <Button layoutX="461.0" layoutY="250.0" onAction="#insertBand" text="Add" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+    <TableView fx:id="bandTable" layoutX="51.0" layoutY="56.0" prefHeight="234.0" prefWidth="317.0">
+        <columns>
+            <TableColumn fx:id="idColumn" prefWidth="55.40000915527344" text="ID" />
+            <TableColumn fx:id="nameColumn" prefWidth="131.00000762939453" text="Nombre" />
+            <TableColumn fx:id="componentsColumn" prefWidth="129.0" text="Componente" />
+        </columns>
+    </TableView>
+
+    <Label fx:id="resultLabel" GridPane.columnIndex="0" GridPane.columnSpan="3" GridPane.rowIndex="4" />
+    <Button layoutX="813.0" layoutY="40.0" onAction="#loginButton" text="Login" />
+
+
+</AnchorPane>

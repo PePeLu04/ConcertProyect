@@ -7,11 +7,13 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import org.proyect.App;
 import org.proyect.Model.DAO.DAOBand;
 import org.proyect.Model.DAO.DAOInstrument;
 import org.proyect.Model.Domain.Band;
 import org.proyect.Model.Domain.Instrument;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.concurrent.Executors;
@@ -38,6 +40,14 @@ public class BandController {
 
     @FXML
     private TextField componentsField;
+    @FXML
+    private TextField idField3;
+
+    @FXML
+    private TextField nameField3;
+
+    @FXML
+    private TextField componentsField3;
     @FXML
     private TextField idField1;
 
@@ -75,6 +85,28 @@ public class BandController {
             System.out.println(e.getMessage());
         }
         return null;
+    }
+
+    @FXML
+    private void deleteBand(ActionEvent event) {
+        try {
+            String id = idField3.getText();System.out.println(id);
+
+            Band band = daoBand.searchById(id);
+
+            if (band != null) {
+                daoBand.delete(band.getId());
+                System.out.println("Instrument deleted successfully.");
+            } else {
+                System.out.println("Instrument with ID " + id + " not found.");
+            }
+
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid ID format.");
+        } catch (SQLException e) {
+            System.out.println("Error accessing the database.");
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -129,5 +161,10 @@ public class BandController {
         } catch (SQLException e) {
             // Manejar el error
         }
+    }
+
+    @FXML
+    private void loginButton() throws IOException {
+        App.setRoot("login");
     }
 }

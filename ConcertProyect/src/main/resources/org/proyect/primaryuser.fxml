@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.proyect.Controller.PrimaryController"
+            prefHeight="400.0" prefWidth="600.0">
+
+    <children>
+        <VBox layoutX="14.0" layoutY="16.0" spacing="10">
+            <Button fx:id="menuButton" onAction="#toggleMenu" text="☰" />
+            <VBox fx:id="menu" spacing="5" visible="false">
+                <Button onAction="#switchToSecondaryUser" text="Bandas" />
+                <Button onAction="#switchToThirdUser" text="Instrumentos" />
+                <Button text="Opción 3" />
+            </VBox>
+        </VBox>
+        <Label alignment="TOP_CENTER" centerShape="false" depthTest="ENABLE" layoutX="381.0" layoutY="53.0" mouseTransparent="true" prefHeight="15.0" prefWidth="138.0" text="Concerts">
+        </Label>
+        <Button layoutX="813.0" layoutY="40.0" onAction="#loginButton" text="Login" />
+    </children>
+
+</AnchorPane>

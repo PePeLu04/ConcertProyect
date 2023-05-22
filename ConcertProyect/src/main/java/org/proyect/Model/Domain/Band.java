@@ -2,7 +2,7 @@ package org.proyect.Model.Domain;
 
 import java.util.Objects;
 
-public class Band {
+public class Band{
     private String id;
     private String name;
     private String components;

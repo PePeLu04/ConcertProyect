@@ -22,6 +22,15 @@ public class PrimaryController {
     private void switchToThird() throws IOException {
         App.setRoot("central");
     }
+    @FXML
+    private void switchToSecondaryUser() throws IOException {
+        App.setRoot("bandUser");
+    }
+
+    @FXML
+    private void switchToThirdUser() throws IOException {
+        App.setRoot("centralUser");
+    }
     public void initialize() {
         menuButton.setOnAction(event -> toggleMenu());
     }
@@ -29,5 +38,10 @@ public class PrimaryController {
     @FXML
     private void toggleMenu() {
         menu.setVisible(!menu.isVisible());
+    }
+
+    @FXML
+    private void loginButton() throws IOException {
+        App.setRoot("login");
     }
 }

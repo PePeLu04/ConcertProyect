@@ -3,9 +3,11 @@ package org.proyect.Controller;
 import javafx.event.ActionEvent;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
+import org.proyect.App;
 import org.proyect.Model.DAO.DAOInstrument;
 import org.proyect.Model.Domain.Instrument;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.concurrent.Executors;
@@ -54,11 +56,31 @@ public class InstrumentController {
     private TableColumn<Instrument, String> priceColumn;
     @FXML
     private Label resultLabel;
+    @FXML
+    private Button menuButton;
+
+    @FXML
+    private VBox menu;
     private ScheduledExecutorService scheduler;
     private static final int UPDATE_INTERVAL = 1;
     public void initialize() {
         scheduler = Executors.newSingleThreadScheduledExecutor();
         scheduler.scheduleAtFixedRate(this::searchAllInstruments, 0, UPDATE_INTERVAL, TimeUnit.SECONDS);
+        menuButton.setOnAction(event -> toggleMenu());
+    }
+
+    @FXML
+    private void toggleMenu() {
+        menu.setVisible(!menu.isVisible());
+    }
+    @FXML
+    private void switchToSecondary() throws IOException {
+        App.setRoot("band");
+    }
+
+    @FXML
+    private void switchToThird() throws IOException {
+        App.setRoot("central");
     }
 
 
@@ -165,6 +187,10 @@ public class InstrumentController {
         } catch (SQLException e) {
             // Manejar el error
         }
+    }
+    @FXML
+    private void loginButton() throws IOException {
+        App.setRoot("login");
     }
 }
 

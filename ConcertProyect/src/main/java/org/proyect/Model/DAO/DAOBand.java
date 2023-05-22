@@ -2,6 +2,7 @@ package org.proyect.Model.DAO;
 
 import org.proyect.Model.Connections.ConnectionMySql;
 import org.proyect.Model.Domain.Band;
+import org.proyect.Model.Domain.Instrument;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

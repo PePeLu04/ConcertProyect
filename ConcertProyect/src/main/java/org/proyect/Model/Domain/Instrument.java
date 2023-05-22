@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class Instrument {
     private String id;
-    private String name;
+    private String name1;
     private String sound;
     private String price;
 
@@ -17,11 +17,11 @@ public class Instrument {
     }
 
     public String getName() {
-        return name;
+        return name1;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.name1 = name1;
     }
 
     public String getSound() {
@@ -40,9 +40,9 @@ public class Instrument {
         this.price = price;
     }
 
-    public Instrument(String id, String name, String sound, String price) {
+    public Instrument(String id, String name1, String sound, String price) {
         this.id = id;
-        this.name = name;
+        this.name1 = name1;
         this.sound = sound;
         this.price = price;
     }
@@ -52,19 +52,19 @@ public class Instrument {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Instrument that = (Instrument) o;
-        return id == that.id && CharSequence.compare(that.price, price) == 0 && Objects.equals(name, that.name) && Objects.equals(sound, that.sound);
+        return id == that.id && CharSequence.compare(that.price, price) == 0 && Objects.equals(name1, that.name1) && Objects.equals(sound, that.sound);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, sound, price);
+        return Objects.hash(id, name1, sound, price);
     }
 
     @Override
     public String toString() {
         return "Instrument{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
+                ", name='" + name1 + '\'' +
                 ", sound='" + sound + '\'' +
                 ", price=" + price +
                 '}';

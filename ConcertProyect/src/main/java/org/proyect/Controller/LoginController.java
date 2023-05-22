@@ -22,6 +22,8 @@ public class LoginController {
 
     @FXML
     private PasswordField passwordField;
+    @FXML
+    private TextField roleField;
 
     private Connection connection;
     private static Scene scene;
@@ -37,24 +39,39 @@ public class LoginController {
     }
 
     @FXML
-    private void login(ActionEvent event) throws IOException {
+    private void login(ActionEvent event) throws IOException, SQLException {
         String username = usernameField.getText();
         String password = passwordField.getText();
 
         if (authenticateUser(username, password)) {
-            showAlert("Inicio de sesión exitoso", "¡Bienvenido " + username + "!");
-            App.setRoot("primary");
+            String role = getRole(username);
+            if (role.equals("admin")) {
+                System.out.println("Admin login successful");
+                switchToAdmin();
+            } else if (role.equals("user")) {
+                System.out.println("User login successful");
+                switchToUser();
+            }
         } else {
-            showAlert("Inicio de sesión fallido", "Usuario o contraseña incorrectos");
+            System.out.println("Login failed");
         }
+    }
+    @FXML
+    private void switchToUser() throws IOException {
+        App.setRoot("primaryuser");
+    }
+    @FXML
+    private void switchToAdmin() throws IOException {
+        App.setRoot("primary");
     }
 
     @FXML
     private void createAccount(ActionEvent event) {
         String username = usernameField.getText();
         String password = passwordField.getText();
+        String role = roleField.getText();
 
-        if (createUser(username, password)) {
+        if (createUser(username, password, role)) {
             showAlert("Cuenta creada", "¡La cuenta se ha creado exitosamente!");
         } else {
             showAlert("Error al crear cuenta", "No se pudo crear la cuenta. Inténtalo de nuevo.");
@@ -76,11 +93,23 @@ public class LoginController {
         }
     }
 
-    private boolean createUser(String username, String password) {
+    private String getRole(String username) throws SQLException {
+        PreparedStatement statement = connection.prepareStatement("SELECT role FROM users WHERE username = ?");
+            statement.setString(1, username);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                return resultSet.getString("role");
+            } else {
+                return "";
+            }
+    }
+
+    private boolean createUser(String username, String password, String role) {
         try {
-            PreparedStatement statement = connection.prepareStatement("INSERT INTO users (username, password) VALUES (?, ?)");
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO users (username, password, role) VALUES (?, ?, ?)");
             statement.setString(1, username);
             statement.setString(2, password);
+            statement.setString(3, role);
 
             int rowsInserted = statement.executeUpdate();
 

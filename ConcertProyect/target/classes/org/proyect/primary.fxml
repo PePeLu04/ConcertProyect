@@ -1,25 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<VBox alignment="CENTER" prefHeight="587.0" prefWidth="934.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.proyect.Controller.PrimaryController">
+<AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.proyect.Controller.PrimaryController">
    <children>
-      <Label alignment="TOP_CENTER" centerShape="false" depthTest="ENABLE" mouseTransparent="true" prefHeight="15.0" prefWidth="138.0" text="Concerts" translateZ="5.0">
-         <VBox.margin>
-            <Insets />
-         </VBox.margin></Label>
-      <VBox layoutX="21.0" layoutY="17.0" prefHeight="44.0" prefWidth="32.0" spacing="10">
-         <Button fx:id="menuButton" onAction="#toggleMenu" prefHeight="16.0" prefWidth="28.0" text="☰" />
+      <VBox layoutX="14.0" layoutY="16.0" spacing="10">
+         <Button fx:id="menuButton" onAction="#toggleMenu" text="☰" />
          <VBox fx:id="menu" spacing="5" visible="false">
-            <Button text="Bandas" fx:id="BandButton" onAction="#switchToSecondary" />
-            <Button text="Instrumentos" fx:id="InstrumentsButton" onAction="#switchToThird" />
-            <Button text="Conciertos" />
+            <Button onAction="#switchToSecondary" text="Bandas" />
+            <Button onAction="#switchToThird" text="Instrumentos" />
+            <Button text="Opción 3" />
          </VBox>
       </VBox>
+      <Label alignment="TOP_CENTER" centerShape="false" depthTest="ENABLE" layoutX="381.0" layoutY="53.0" mouseTransparent="true" prefHeight="15.0" prefWidth="138.0" text="Concerts">
+         <font>
+            <Font name="Corbel Light Italic" size="20.0" />
+         </font>
+      </Label>
+      <Button layoutX="813.0" layoutY="40.0" onAction="#loginButton" text="Login" />
    </children>
-   <padding>
-      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-   </padding>
-</VBox>
+</AnchorPane>
