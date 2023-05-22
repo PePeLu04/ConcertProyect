@@ -1,28 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="org.proyect.Controller.PrimaryController"
-            prefHeight="400.0" prefWidth="600.0">
+<AnchorPane prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.proyect.Controller.PrimaryController">
 
     <children>
-        <VBox layoutX="14.0" layoutY="16.0" spacing="10">
-            <Button fx:id="menuButton" onAction="#toggleMenu" text="☰" />
+        <VBox layoutX="42.0" layoutY="40.0" spacing="10">
+            <Button fx:id="menuButton" onAction="#toggleMenu" prefHeight="31.0" prefWidth="34.0" text="☰" />
             <VBox fx:id="menu" spacing="5" visible="false">
                 <Button onAction="#switchToSecondaryUser" text="Bandas" />
                 <Button onAction="#switchToThirdUser" text="Instrumentos" />
-                <Button text="Opción 3" />
             </VBox>
         </VBox>
-        <Label alignment="TOP_CENTER" centerShape="false" depthTest="ENABLE" layoutX="381.0" layoutY="53.0" mouseTransparent="true" prefHeight="15.0" prefWidth="138.0" text="Concerts">
-        </Label>
-        <Button layoutX="813.0" layoutY="40.0" onAction="#loginButton" text="Login" />
+
+        <Label alignment="TOP_CENTER" centerShape="false" depthTest="ENABLE" layoutX="383.0" layoutY="288.0" mouseTransparent="true" prefHeight="144.0" prefWidth="314.0" text="Concerts" textFill="#231e1e">
+         <font>
+            <Font name="Javanese Text" size="50.0" />
+         </font></Label>
+        <Button layoutX="926.0" layoutY="53.0" onAction="#loginButton" prefHeight="26.0" prefWidth="75.0" text="Login" />
     </children>
 
 </AnchorPane>

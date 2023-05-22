@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.proyect.Controller.InstrumentController">
+<AnchorPane prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #EC0726;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.proyect.Controller.InstrumentController">
 
     <children>
         <Label layoutX="376.0" layoutY="18.0" prefHeight="44.0" prefWidth="151.0" text="Instrumentos">
@@ -29,18 +29,13 @@
         </VBox>
 
         <Label layoutX="880.0" layoutY="177.0" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-        <TextField fx:id="idField" layoutX="879.0" layoutY="195.0" promptText="ID" GridPane.columnIndex="1" GridPane.rowIndex="0" />
 
         <Label layoutX="880.0" layoutY="221.0" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-        <TextField fx:id="nameField" layoutX="879.0" layoutY="236.0" promptText="Nombre" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
         <Label layoutX="930.0" layoutY="278.0" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-        <TextField fx:id="soundField" layoutX="880.0" layoutY="274.0" promptText="Sonido" GridPane.columnIndex="1" GridPane.rowIndex="2" />
 
         <Label layoutX="921.0" layoutY="319.0" GridPane.columnIndex="0" GridPane.rowIndex="3" />
-        <TextField fx:id="priceField" layoutX="880.0" layoutY="315.0" promptText="Precio" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-        <Button layoutX="935.0" layoutY="364.0" onAction="#insertInstrument" text="Add" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-        <TableView fx:id="instrumentTable" layoutX="115.0" layoutY="70.0" prefHeight="497.0" prefWidth="673.0">
+        <TableView fx:id="instrumentTable" layoutX="100.0" layoutY="111.0" prefHeight="497.0" prefWidth="673.0">
             <columns>
                 <TableColumn fx:id="idColumn" prefWidth="79.99999618530273" text="ID" />
                 <TableColumn fx:id="nameColumn" prefWidth="175.99998474121094" text="Nombre" />
@@ -53,6 +48,19 @@
             <font>
                 <Font name="Calibri" size="16.0" />
             </font></Button>
+      <TitledPane expanded="false" layoutX="821.0" layoutY="187.0" prefHeight="300.0" prefWidth="200.0" text="Insertar">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                    <TextField fx:id="idField" layoutX="25.0" layoutY="39.0" promptText="ID" />
+                    <TextField fx:id="nameField" layoutX="25.0" layoutY="80.0" promptText="Nombre" />
+                    <TextField fx:id="soundField" layoutX="26.0" layoutY="118.0" promptText="Sonido" />
+                    <TextField fx:id="priceField" layoutX="26.0" layoutY="159.0" promptText="Precio" />
+                    <Button layoutX="72.0" layoutY="207.0" onAction="#insertInstrument" text="Insertar" />
+               </children>
+            </AnchorPane>
+        </content>
+      </TitledPane>
 
 
     </children>

@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox alignment="CENTER" prefHeight="723.0" prefWidth="1080.0" spacing="10" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.proyect.Controller.LoginController">
+<VBox alignment="CENTER" prefHeight="723.0" style="-fx-background-color: #07ECE9;" prefWidth="1080.0" spacing="10" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.proyect.Controller.LoginController">
     <padding>
         <Insets bottom="100" left="50" right="50" top="100" />
     </padding>

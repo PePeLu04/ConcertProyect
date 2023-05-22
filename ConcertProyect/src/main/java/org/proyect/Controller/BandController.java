@@ -2,16 +2,12 @@ package org.proyect.Controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.VBox;
 import org.proyect.App;
 import org.proyect.Model.DAO.DAOBand;
-import org.proyect.Model.DAO.DAOInstrument;
 import org.proyect.Model.Domain.Band;
-import org.proyect.Model.Domain.Instrument;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -57,12 +53,34 @@ public class BandController {
     @FXML
     private TextField componentsField1;
     DAOBand daoBand = new DAOBand();
+    @FXML
+    private Button menuButton;
+
+    @FXML
+    private VBox menu;
     private ScheduledExecutorService scheduler;
     private static final int UPDATE_INTERVAL = 1;
     public void initialize() {
         scheduler = Executors.newSingleThreadScheduledExecutor();
         scheduler.scheduleAtFixedRate(this::searchAllBands, 0, UPDATE_INTERVAL, TimeUnit.SECONDS);
+        menuButton.setOnAction(event -> toggleMenu());
     }
+
+
+    @FXML
+    private void toggleMenu() {
+        menu.setVisible(!menu.isVisible());
+    }
+    @FXML
+    private void switchToSecondary() throws IOException {
+        App.setRoot("band");
+    }
+
+    @FXML
+    private void switchToThird() throws IOException {
+        App.setRoot("central");
+    }
+
 
     @FXML
     private Band insertBand(ActionEvent event) {

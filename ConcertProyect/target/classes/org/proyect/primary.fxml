@@ -4,21 +4,21 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.proyect.Controller.PrimaryController">
+<AnchorPane prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.proyect.Controller.PrimaryController">
    <children>
-      <VBox layoutX="14.0" layoutY="16.0" spacing="10">
-         <Button fx:id="menuButton" onAction="#toggleMenu" text="☰" />
+      <VBox layoutX="55.0" layoutY="45.0" spacing="10">
+         <Button fx:id="menuButton" onAction="#toggleMenu" prefHeight="32.0" prefWidth="31.0" text="☰" />
          <VBox fx:id="menu" spacing="5" visible="false">
             <Button onAction="#switchToSecondary" text="Bandas" />
             <Button onAction="#switchToThird" text="Instrumentos" />
-            <Button text="Opción 3" />
          </VBox>
       </VBox>
-      <Label alignment="TOP_CENTER" centerShape="false" depthTest="ENABLE" layoutX="381.0" layoutY="53.0" mouseTransparent="true" prefHeight="15.0" prefWidth="138.0" text="Concerts">
+
+      <Label alignment="TOP_CENTER" centerShape="false" depthTest="ENABLE" layoutX="435.0" layoutY="325.0" mouseTransparent="true" prefHeight="69.0" prefWidth="209.0" text="Concerts">
          <font>
-            <Font name="Corbel Light Italic" size="20.0" />
+            <Font name="Corbel Light Italic" size="50.0" />
          </font>
       </Label>
-      <Button layoutX="813.0" layoutY="40.0" onAction="#loginButton" text="Login" />
+      <Button layoutX="912.0" layoutY="68.0" onAction="#loginButton" prefHeight="26.0" prefWidth="64.0" text="Login" />
    </children>
 </AnchorPane>
