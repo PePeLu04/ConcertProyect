@@ -23,8 +23,8 @@
     <VBox layoutX="47.0" layoutY="29.0" prefHeight="98.0" prefWidth="94.0" spacing="10">
         <Button fx:id="menuButton" onAction="#toggleMenu" text="☰" />
         <VBox fx:id="menu" spacing="5" visible="false">
-            <Button onAction="#switchToSecondary" text="Bandas" />
-            <Button onAction="#switchToThird" text="Instrumentos" />
+            <Button onAction="#switchToSecondaryUser" text="Bandas" />
+            <Button onAction="#switchToThirdUser" text="Instrumentos" />
         </VBox>
     </VBox>
 

@@ -1,6 +1,8 @@
 package org.proyect.Controller;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import org.proyect.App;
@@ -13,10 +15,6 @@ import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
-
-
-import javafx.fxml.FXML;
-import javafx.scene.control.*;
 
 public class InstrumentController {
 
@@ -83,6 +81,15 @@ public class InstrumentController {
         App.setRoot("central");
     }
 
+    @FXML
+    private void switchToSecondaryUser() throws IOException {
+        App.setRoot("bandUser");
+    }
+
+    @FXML
+    private void switchToThirdUser() throws IOException {
+        App.setRoot("centralUser");
+    }
 
     DAOInstrument daoInstrument = new DAOInstrument();
 

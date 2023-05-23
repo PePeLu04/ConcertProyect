@@ -80,6 +80,16 @@ public class BandController {
     private void switchToThird() throws IOException {
         App.setRoot("central");
     }
+    @FXML
+    private void switchToSecondaryUser() throws IOException {
+        App.setRoot("bandUser");
+    }
+
+    @FXML
+    private void switchToThirdUser() throws IOException {
+        App.setRoot("centralUser");
+    }
+
 
 
     @FXML
