@@ -1,11 +1,14 @@
 package org.proyect.Controller;
 
-import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 import org.proyect.App;
 
+import java.io.IOException;
+
+//Este es el controlador principal después del Login
+//Únicamente tiene métodos para cambiar a diferentes vistas
 public class PrimaryController {
     @FXML
     private Button menuButton;

@@ -43,6 +43,7 @@ public class LoginController {
         String username = usernameField.getText();
         String password = passwordField.getText();
 
+        //Asigna los roles para llegar a una vista diferente creada posteriormente
         if (authenticateUser(username, password)) {
             String role = getRole(username);
             if (role.equals("admin")) {
@@ -71,6 +72,7 @@ public class LoginController {
         String password = passwordField.getText();
         String role = roleField.getText();
 
+        //Si se insertan los campo se crea la cuenta
         if (createUser(username, password, role)) {
             showAlert("Cuenta creada", "¡La cuenta se ha creado exitosamente!");
         } else {
@@ -80,6 +82,7 @@ public class LoginController {
 
     private boolean authenticateUser(String username, String password) {
         try {
+            //Hace la conslta a la base de datos
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM users WHERE username = ? AND password = ?");
             statement.setString(1, username);
             statement.setString(2, password);
@@ -93,6 +96,7 @@ public class LoginController {
         }
     }
 
+    //método para buscar el rol en la base de datos
     private String getRole(String username) throws SQLException {
         PreparedStatement statement = connection.prepareStatement("SELECT role FROM users WHERE username = ?");
             statement.setString(1, username);

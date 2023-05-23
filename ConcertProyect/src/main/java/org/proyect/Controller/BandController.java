@@ -100,6 +100,7 @@ public class BandController {
             String components = componentsField.getText();
 
             Band band = new Band(id, name, components);
+            //Llama al metodo insert del DAO para insertar Banda
             daoBand.insert(band);
 
             System.out.println("Band inserted successfully.");
@@ -123,6 +124,7 @@ public class BandController {
             Band band = daoBand.searchById(id);
 
             if (band != null) {
+                //Llama al metodo delete del DAO para eliminar Banda
                 daoBand.delete(band.getId());
                 System.out.println("Instrument deleted successfully.");
             } else {
@@ -148,6 +150,7 @@ public class BandController {
             if (band != null) {
                 band.setName(name);
                 band.setComponents(components);
+                //Llama al metodo update del DAO para actualizar Banda
                 daoBand.update(band);
                 resultLabel.setText("Banda actualizado.");
             } else {

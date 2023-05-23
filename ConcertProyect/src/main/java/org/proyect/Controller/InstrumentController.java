@@ -103,6 +103,7 @@ public class InstrumentController {
             String price = priceField.getText();
 
             Instrument instrument = new Instrument(id, name, sound, price);
+            //Llama al metodo insert del DAO para insertar Instrumento
             daoInstrument.insert(instrument);
 
             System.out.println("Instrument inserted successfully.");
@@ -125,6 +126,7 @@ public class InstrumentController {
             Instrument instrument = daoInstrument.searchById(id);
 
             if (instrument != null) {
+                //Llama al metodo delete del DAO para eliminar Instrumento
                 daoInstrument.delete(instrument.getId());
                 System.out.println("Instrument deleted successfully.");
             } else {
@@ -152,6 +154,7 @@ public class InstrumentController {
                 instrument.setName(name);
                 instrument.setSound(sound);
                 instrument.setPrice(price);
+                //Llama al metodo update del DAO para actualizar Instrumento
                 daoInstrument.update(instrument);
                 resultLabel.setText("Instrumento actualizado.");
             } else {
