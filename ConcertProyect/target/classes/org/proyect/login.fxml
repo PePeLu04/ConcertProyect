@@ -12,9 +12,9 @@
 
     <Label style="-fx-font-size: 20px;" text="Inicio de sesión" />
 
-    <TextField fx:id="usernameField" alignment="TOP_CENTER" maxWidth="200.0" promptText="Usuario" text="Jose" />
+    <TextField fx:id="usernameField" alignment="TOP_CENTER" maxWidth="200.0" promptText="Usuario" />
     <PasswordField fx:id="passwordField" alignment="TOP_CENTER" maxWidth="200.0" promptText="Contraseña" text="1234" />
-    <TextField fx:id="roleField" alignment="TOP_CENTER" maxWidth="200.0" promptText="Role" text="1234" />
+    <TextField fx:id="roleField" alignment="TOP_CENTER" maxWidth="200.0" promptText="Role" />
 
     <Button onAction="#login" text="Iniciar sesión" />
     <Button onAction="#createAccount" text="Crear cuenta" />
