@@ -6,7 +6,7 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.proyect.Controller.InstrumentController">
    <children>
-    <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #EC0726;">
+    <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #C87BDC;">
       <children>
             <Label layoutX="464.0" layoutY="40.0" prefHeight="44.0" prefWidth="151.0" text="Instrumentos">
                <font>
