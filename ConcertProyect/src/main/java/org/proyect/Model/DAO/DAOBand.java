@@ -2,6 +2,7 @@ package org.proyect.Model.DAO;
 
 import org.proyect.Model.Connections.ConnectionMySql;
 import org.proyect.Model.Domain.Band;
+import org.proyect.Model.Domain.Instrument;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -19,11 +20,16 @@ public class DAOBand implements DAO<Band> {
         this.conn= ConnectionMySql.getConnect();
     }
 
+    private DAO<Band> bandDAO;
+    private DAO<Instrument> instrumentDAO;
+
+    // Constructor, inicialización de DAOs, etc.
+
     @Override
     public Band insert(Band entity) throws SQLException {
         try {
-            PreparedStatement ps = conn.prepareStatement("INSERT INTO bands (id, name, components) VALUES (?, ?, ?)");
-            ps.setString(1, entity.getId());
+            PreparedStatement ps = conn.prepareStatement("INSERT INTO bands (band_id, name, components) VALUES (?, ?, ?)");
+            ps.setString(1, entity.getBand_id());
             ps.setString(2, entity.getName());
             ps.setString(3, entity.getComponents());
             ps.executeUpdate();
@@ -37,10 +43,10 @@ public class DAOBand implements DAO<Band> {
     @Override
     public Band update(Band entity) throws SQLException {
         try {
-            PreparedStatement ps = conn.prepareStatement("UPDATE bands SET name = ?, components = ? WHERE id = ?");
+            PreparedStatement ps = conn.prepareStatement("UPDATE bands SET name = ?, components = ? WHERE band_id = ?");
             ps.setString(1, entity.getName());
             ps.setString(2, entity.getComponents());
-            ps.setString(3, entity.getId());
+            ps.setString(3, entity.getBand_id());
             ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -51,7 +57,7 @@ public class DAOBand implements DAO<Band> {
 
     @Override
     public void delete(String entity) throws SQLException {
-        String sql = "DELETE FROM bands WHERE id = ?";
+        String sql = "DELETE FROM bands WHERE band_id = ?";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, entity);
 
@@ -61,14 +67,14 @@ public class DAOBand implements DAO<Band> {
     }
 
     @Override
-    public Band searchById(String id) throws SQLException {
-        String sql = "SELECT * FROM bands WHERE id = ?";
+    public Band searchById(String band_id) throws SQLException {
+        String sql = "SELECT * FROM bands WHERE band_id = ?";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setString(1, id);
+            stmt.setString(1, band_id);
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
                     return new Band(
-                            rs.getString("id"),
+                            rs.getString("band_id"),
                             rs.getString("name"),
                             rs.getString("components")
                     );
@@ -84,10 +90,10 @@ public class DAOBand implements DAO<Band> {
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
-                    String id = rs.getString("id");
+                    String band_id = rs.getString("band_id");
                     String name = rs.getString("name");
                     String components = rs.getString("components");
-                    Band band = new Band(id, name, components);
+                    Band band = new Band(band_id, name, components);
                     bands.add(band);
                 }
             }

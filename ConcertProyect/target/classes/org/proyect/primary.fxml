@@ -11,6 +11,7 @@
          <VBox fx:id="menu" spacing="5" visible="false">
             <Button onAction="#switchToSecondary" text="Bandas" />
             <Button onAction="#switchToThird" text="Instrumentos" />
+            <Button onAction="#switchToNM" text="NM" />
          </VBox>
       </VBox>
 

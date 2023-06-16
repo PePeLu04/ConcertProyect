@@ -36,10 +36,11 @@
         <Label layoutX="921.0" layoutY="319.0" GridPane.columnIndex="0" GridPane.rowIndex="3" />
         <TableView fx:id="instrumentTable" layoutX="100.0" layoutY="111.0" prefHeight="497.0" prefWidth="673.0">
             <columns>
-                <TableColumn fx:id="idColumn" prefWidth="79.99999618530273" text="ID" />
-                <TableColumn fx:id="nameColumn" prefWidth="175.99998474121094" text="Nombre" />
-                <TableColumn fx:id="soundColumn" prefWidth="221.60003662109375" text="Sonido" />
-                <TableColumn fx:id="priceColumn" prefWidth="196.0" text="Precio" />
+                <TableColumn fx:id="idColumn" prefWidth="52.99999237060547" text="ID" />
+                <TableColumn fx:id="nameColumn" prefWidth="153.39999389648438" text="Nombre" />
+                <TableColumn fx:id="soundColumn" prefWidth="137.80001831054688" text="Sonido" />
+                <TableColumn fx:id="priceColumn" prefWidth="128.20004272460938" text="Precio" />
+                <TableColumn fx:id="bandColumn" prefWidth="195.79998779296875" text="Banda" />
             </columns>
         </TableView>
         <Label fx:id="resultLabel" GridPane.columnIndex="0" GridPane.columnSpan="3" GridPane.rowIndex="4" />
@@ -47,14 +48,15 @@
             <font>
                 <Font name="Calibri" size="16.0" />
             </font></Button>
-      <TitledPane expanded="false" layoutX="821.0" layoutY="187.0" prefHeight="300.0" prefWidth="200.0" text="Insertar">
+      <TitledPane layoutX="821.0" layoutY="187.0" prefHeight="300.0" prefWidth="200.0" text="Insertar">
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                    <TextField fx:id="idField" layoutX="25.0" layoutY="39.0" promptText="ID" />
-                    <TextField fx:id="nameField" layoutX="25.0" layoutY="80.0" promptText="Nombre" />
-                    <TextField fx:id="soundField" layoutX="26.0" layoutY="118.0" promptText="Sonido" />
-                    <TextField fx:id="priceField" layoutX="26.0" layoutY="159.0" promptText="Precio" />
+                    <TextField fx:id="idField" layoutX="24.0" layoutY="25.0" promptText="ID" />
+                    <TextField fx:id="nameField" layoutX="24.0" layoutY="63.0" promptText="Nombre" />
+                    <TextField fx:id="soundField" layoutX="25.0" layoutY="100.0" promptText="Sonido" />
+                    <TextField fx:id="priceField" layoutX="25.0" layoutY="137.0" promptText="Precio" />
+                    <TextField fx:id="bandField" layoutX="25.0" layoutY="173.0" promptText="Banda" />
                     <Button layoutX="72.0" layoutY="207.0" onAction="#insertInstrument" text="Insertar" />
                </children>
             </AnchorPane>

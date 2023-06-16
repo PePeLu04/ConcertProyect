@@ -25,6 +25,11 @@ public class PrimaryController {
     private void switchToThird() throws IOException {
         App.setRoot("central");
     }
+
+    @FXML
+    private void switchToNM() throws IOException {
+        App.setRoot("NM");
+    }
     @FXML
     private void switchToSecondaryUser() throws IOException {
         App.setRoot("bandUser");

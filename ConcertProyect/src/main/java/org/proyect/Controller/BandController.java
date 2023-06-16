@@ -8,6 +8,7 @@ import javafx.scene.layout.VBox;
 import org.proyect.App;
 import org.proyect.Model.DAO.DAOBand;
 import org.proyect.Model.Domain.Band;
+import org.proyect.Model.Domain.Instrument;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -38,12 +39,10 @@ public class BandController {
     private TextField componentsField;
     @FXML
     private TextField idField3;
-
     @FXML
-    private TextField nameField3;
-
+    private TableColumn<Instrument, String> instrumentIdColumn;
     @FXML
-    private TextField componentsField3;
+    private TableColumn<Instrument, String> instrumentNameColumn;
     @FXML
     private TextField idField1;
 
@@ -95,11 +94,11 @@ public class BandController {
     @FXML
     private Band insertBand(ActionEvent event) {
         try {
-            String id = idField.getText();
+            String band_id = idField.getText();
             String name = nameField.getText();
             String components = componentsField.getText();
 
-            Band band = new Band(id, name, components);
+            Band band = new Band(band_id, name, components);
             //Llama al metodo insert del DAO para insertar Banda
             daoBand.insert(band);
 
@@ -119,16 +118,16 @@ public class BandController {
     @FXML
     private void deleteBand(ActionEvent event) {
         try {
-            String id = idField3.getText();System.out.println(id);
+            String band_id = idField3.getText();System.out.println(band_id);
 
-            Band band = daoBand.searchById(id);
+            Band band = daoBand.searchById(band_id);
 
             if (band != null) {
                 //Llama al metodo delete del DAO para eliminar Banda
-                daoBand.delete(band.getId());
+                daoBand.delete(band.getBand_id());
                 System.out.println("Instrument deleted successfully.");
             } else {
-                System.out.println("Instrument with ID " + id + " not found.");
+                System.out.println("Instrument with ID " + band_id + " not found.");
             }
 
         } catch (NumberFormatException e) {
@@ -141,12 +140,12 @@ public class BandController {
 
     @FXML
     private void updateBand() {
-        String id = idField1.getText();
+        String band_id = idField1.getText();
         String name = nameField1.getText();
         String components = componentsField1.getText();
 
         try {
-            Band band = daoBand.searchById(id);
+            Band band = daoBand.searchById(band_id);
             if (band != null) {
                 band.setName(name);
                 band.setComponents(components);
@@ -163,9 +162,9 @@ public class BandController {
 
     @FXML
     private void searchBand() throws SQLException {
-        String id = idField1.getText();
+        String band_id = idField1.getText();
         try {
-            Band band = daoBand.searchById(id);
+            Band band = daoBand.searchById(band_id);
             if (band != null) {
                 nameField1.setText(band.getName());
                 componentsField1.setText(band.getComponents());
@@ -183,7 +182,7 @@ public class BandController {
             List<Band> bands = daoBand.findAll();
 
             // Asignar los valores a las columnas de la tabla
-            idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+            idColumn.setCellValueFactory(new PropertyValueFactory<>("band_id"));
             nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
             componentsColumn.setCellValueFactory(new PropertyValueFactory<>("components"));
 

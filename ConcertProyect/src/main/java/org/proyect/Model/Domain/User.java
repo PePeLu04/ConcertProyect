@@ -2,12 +2,13 @@ package org.proyect.Model.Domain;
 
 import java.util.Objects;
 
-public class User {
+public class User extends Person{
     private String username;
     private String password;
     private String role;
 
-    public User(String username, String password, String role) {
+    public User(String id, String mail, String dni, String username, String password, String role) {
+        super(id, mail, dni);
         this.username = username;
         this.password = password;
         this.role = role;
@@ -17,8 +18,16 @@ public class User {
         return username;
     }
 
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     public String getPassword() {
         return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getRole() {
@@ -33,13 +42,14 @@ public class User {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
         User user = (User) o;
         return Objects.equals(username, user.username) && Objects.equals(password, user.password) && Objects.equals(role, user.role);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(username, password, role);
+        return Objects.hash(super.hashCode(), username, password, role);
     }
 
     @Override

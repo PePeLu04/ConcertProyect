@@ -22,8 +22,9 @@ public class LoginController {
 
     @FXML
     private PasswordField passwordField;
+
     @FXML
-    private TextField roleField;
+    private TextField dniField;
 
     private Connection connection;
     private static Scene scene;
@@ -42,21 +43,49 @@ public class LoginController {
     private void login(ActionEvent event) throws IOException, SQLException {
         String username = usernameField.getText();
         String password = passwordField.getText();
+        String dni = dniField.getText();
 
         //Asigna los roles para llegar a una vista diferente creada posteriormente
-        if (authenticateUser(username, password)) {
-            String role = getRole(username);
-            if (role.equals("admin")) {
-                System.out.println("Admin login successful");
-                switchToAdmin();
-            } else if (role.equals("user")) {
-                System.out.println("User login successful");
-                switchToUser();
+            if (handleLogin(username, password, dni)) {
+                showAlert("Login Correcto","Bienvenido" + username);
             }
-        } else {
-            System.out.println("Login failed");
-        }
     }
+
+    private boolean handleLogin(String username, String password, String dni) {
+
+        // Verificar las credenciales en la base de datos
+        try {
+            String query = "SELECT role FROM users WHERE username = ? AND password = ? AND dni = ?";
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1, username);
+            statement.setString(2, password);
+            statement.setString(3, dni);
+            ResultSet resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                String role = resultSet.getString("role");
+                switch (role) {
+                    case "admin":
+                        switchToAdmin();
+                        break;
+                    case "user":
+                        switchToUser();
+                        break;
+                    default:
+                        showAlert("Rol desconocido", "No se reconoce el rol del usuario.");
+                        break;
+                }
+            }
+
+            resultSet.close();
+            statement.close();
+        } catch (SQLException | IOException e) {
+            e.printStackTrace();
+            showAlert("Error de autenticación", "No se pudo autenticar al usuario.");
+        }
+        return false;
+    }
+
     @FXML
     private void switchToUser() throws IOException {
         App.setRoot("primaryuser");
@@ -66,61 +95,41 @@ public class LoginController {
         App.setRoot("primary");
     }
 
+    private boolean handleCreateUser(String username, String password, String dni) {
+
+        // Crear un nuevo usuario en la base de datos
+        try {
+            String query = "INSERT INTO users (username, password, role, dni) VALUES (?, ?, 'user', ?)";
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1, username);
+            statement.setString(2, password);
+            statement.setString(3, dni);
+            statement.executeUpdate();
+            statement.close();
+
+            showAlert("Usuario creado", "Se ha creado un nuevo usuario con éxito.");
+            clearFields();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            showAlert("Error al crear usuario", "No se pudo crear el usuario. Por favor, inténtelo nuevamente.");
+        }
+        return false;
+    }
+
+    private void clearFields() {
+        usernameField.clear();
+        passwordField.clear();
+        dniField.clear();
+    }
     @FXML
     private void createAccount(ActionEvent event) {
         String username = usernameField.getText();
         String password = passwordField.getText();
-        String role = roleField.getText();
+        String dni = dniField.getText();
 
         //Si se insertan los campo se crea la cuenta
-        if (createUser(username, password, role)) {
+        if (handleCreateUser(username, password, dni)) {
             showAlert("Cuenta creada", "¡La cuenta se ha creado exitosamente!");
-        } else {
-            showAlert("Error al crear cuenta", "No se pudo crear la cuenta. Inténtalo de nuevo.");
-        }
-    }
-
-    private boolean authenticateUser(String username, String password) {
-        try {
-            //Hace la conslta a la base de datos
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM users WHERE username = ? AND password = ?");
-            statement.setString(1, username);
-            statement.setString(2, password);
-
-            ResultSet resultSet = statement.executeQuery();
-
-            return resultSet.next(); // Si el usuario existe en la base de datos, el resultado tendrá al menos una fila
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
-
-    //método para buscar el rol en la base de datos
-    private String getRole(String username) throws SQLException {
-        PreparedStatement statement = connection.prepareStatement("SELECT role FROM users WHERE username = ?");
-            statement.setString(1, username);
-            ResultSet resultSet = statement.executeQuery();
-            if (resultSet.next()) {
-                return resultSet.getString("role");
-            } else {
-                return "";
-            }
-    }
-
-    private boolean createUser(String username, String password, String role) {
-        try {
-            PreparedStatement statement = connection.prepareStatement("INSERT INTO users (username, password, role) VALUES (?, ?, ?)");
-            statement.setString(1, username);
-            statement.setString(2, password);
-            statement.setString(3, role);
-
-            int rowsInserted = statement.executeUpdate();
-
-            return rowsInserted > 0; // Si se insertó al menos una fila, se creó el usuario correctamente
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
         }
     }
 

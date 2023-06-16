@@ -29,10 +29,11 @@
           </VBox>
           <TableView fx:id="instrumentTable" layoutX="252.0" layoutY="141.0" prefHeight="462.0" prefWidth="575.0">
               <columns>
-                  <TableColumn fx:id="idColumn" prefWidth="79.99999618530273" text="ID" />
-                  <TableColumn fx:id="nameColumn" prefWidth="135.00003051757812" text="Nombre" />
-                  <TableColumn fx:id="soundColumn" prefWidth="193.00003051757812" text="Sonido" />
-                  <TableColumn fx:id="priceColumn" prefWidth="164.20001220703125" text="Precio" />
+                  <TableColumn fx:id="idColumn" prefWidth="53.0" text="ID" />
+                  <TableColumn fx:id="nameColumn" prefWidth="118.19998168945312" text="Nombre" />
+                  <TableColumn fx:id="soundColumn" prefWidth="138.39999389648438" text="Sonido" />
+                  <TableColumn fx:id="priceColumn" prefWidth="144.79998779296875" text="Precio" />
+                  <TableColumn fx:id="bandColumn" prefWidth="117.5999755859375" text="Banda" />
               </columns>
           </TableView>
 
@@ -41,17 +42,18 @@
                <font>
                   <Font name="Calibri" size="16.0" />
                </font></Button>
-            <TitledPane expanded="false" layoutX="22.0" layoutY="141.0" text="Actualizar">
+            <TitledPane layoutX="14.0" layoutY="112.0" prefHeight="227.0" prefWidth="210.0" text="Actualizar">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="224.0" prefWidth="209.0">
                      <children>
                       <TextField fx:id="idField1" layoutX="26.0" layoutY="14.0" promptText="ID" />
                       <TextField fx:id="nameField1" layoutX="26.0" layoutY="40.0" promptText="Nombre" />
                       <TextField fx:id="soundField1" layoutX="26.0" layoutY="66.0" promptText="Sonido" />
                       <TextField fx:id="priceField1" layoutX="26.0" layoutY="92.0" promptText="Precio" />
+                      <TextField fx:id="bandField1" layoutX="26.0" layoutY="118.0" promptText="Banda" />
             
-                            <Button layoutX="23.0" layoutY="135.0" onAction="#searchInstrument" text="Buscar" />
-                      <Button layoutX="102.0" layoutY="135.0" onAction="#updateInstrument" text="Actualizar" />
+                            <Button layoutX="26.0" layoutY="161.0" onAction="#searchInstrument" text="Buscar" />
+                      <Button layoutX="101.0" layoutY="161.0" onAction="#updateInstrument" text="Actualizar" />
                      </children>
                   </AnchorPane>
               </content>
@@ -67,7 +69,7 @@
                   </AnchorPane>
               </content>
             </TitledPane>
-            <TitledPane expanded="false" layoutX="845.0" layoutY="181.0" prefHeight="300.0" prefWidth="200.0" text="Insertar">
+            <TitledPane layoutX="845.0" layoutY="181.0" prefHeight="300.0" prefWidth="200.0" text="Insertar">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -75,7 +77,8 @@
                       <TextField fx:id="nameField" layoutX="23.0" layoutY="62.0" promptText="Nombre" />
                       <TextField fx:id="soundField" layoutX="23.0" layoutY="103.0" promptText="Sonido" />
                       <TextField fx:id="priceField" layoutX="23.0" layoutY="144.0" promptText="Precio" />
-                      <Button layoutX="69.0" layoutY="191.0" onAction="#insertInstrument" text="Insertar" />
+                      <TextField fx:id="bandField" layoutX="23.0" layoutY="189.0" promptText="Banda" />
+                      <Button layoutX="70.0" layoutY="225.0" onAction="#insertInstrument" text="Insertar" />
                      </children>
                   </AnchorPane>
               </content>

@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox alignment="CENTER" prefHeight="723.0" style="-fx-background-color: #07ECE9;" prefWidth="1080.0" spacing="10" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.proyect.Controller.LoginController">
+<VBox alignment="CENTER" prefHeight="400.0" prefWidth="600.0" spacing="10" style="-fx-background-color: #07ECE9;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.proyect.Controller.LoginController">
     <padding>
         <Insets bottom="100" left="50" right="50" top="100" />
     </padding>
@@ -14,7 +14,7 @@
 
     <TextField fx:id="usernameField" alignment="TOP_CENTER" maxWidth="200.0" promptText="Usuario" />
     <PasswordField fx:id="passwordField" alignment="TOP_CENTER" maxWidth="200.0" promptText="Contraseña" text="1234" />
-    <TextField fx:id="roleField" alignment="TOP_CENTER" maxWidth="200.0" promptText="Role" />
+    <TextField fx:id="dniField" alignment="TOP_CENTER" maxWidth="200.0" promptText="DNI" />
 
     <Button onAction="#login" text="Iniciar sesión" />
     <Button onAction="#createAccount" text="Crear cuenta" />

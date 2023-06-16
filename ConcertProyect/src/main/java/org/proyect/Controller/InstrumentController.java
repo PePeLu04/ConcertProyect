@@ -7,6 +7,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import org.proyect.App;
 import org.proyect.Model.DAO.DAOInstrument;
+import org.proyect.Model.Domain.Band;
 import org.proyect.Model.Domain.Instrument;
 
 import java.io.IOException;
@@ -29,6 +30,9 @@ public class InstrumentController {
 
     @FXML
     private TextField priceField;
+
+    @FXML
+    private TextField bandField;
     @FXML
     private TextField idField1;
     @FXML
@@ -43,6 +47,8 @@ public class InstrumentController {
     @FXML
     private TextField priceField1;
     @FXML
+    private TextField bandField1;
+    @FXML
     private TableView<Instrument> instrumentTable;
     @FXML
     private TableColumn<Instrument, String> idColumn;
@@ -53,9 +59,16 @@ public class InstrumentController {
     @FXML
     private TableColumn<Instrument, String> priceColumn;
     @FXML
+    private TableColumn<Instrument, String> bandColumn;
+    @FXML
     private Label resultLabel;
     @FXML
     private Button menuButton;
+
+    @FXML
+    private TableView<Band> bandTableView;
+    @FXML
+    private TextField instrumentTextField;
 
     @FXML
     private VBox menu;
@@ -97,12 +110,13 @@ public class InstrumentController {
     @FXML
     private Instrument insertInstrument(ActionEvent event) {
         try {
-            String id = idField.getText();
+            String instr_id = idField.getText();
             String name = nameField.getText();
             String sound = soundField.getText();
             String price = priceField.getText();
+            String name_band = bandField.getText();
 
-            Instrument instrument = new Instrument(id, name, sound, price);
+            Instrument instrument = new Instrument(instr_id, name, sound, price, name_band);
             //Llama al metodo insert del DAO para insertar Instrumento
             daoInstrument.insert(instrument);
 
@@ -121,16 +135,16 @@ public class InstrumentController {
     @FXML
     private void deleteInstrument(ActionEvent event) {
         try {
-            String id = idField3.getText();System.out.println(id);
+            String instr_id = idField3.getText();
 
-            Instrument instrument = daoInstrument.searchById(id);
+            Instrument instrument = daoInstrument.searchById(instr_id);
 
             if (instrument != null) {
                 //Llama al metodo delete del DAO para eliminar Instrumento
-                daoInstrument.delete(instrument.getId());
+                daoInstrument.delete(instrument.getInstr_id());
                 System.out.println("Instrument deleted successfully.");
             } else {
-                System.out.println("Instrument with ID " + id + " not found.");
+                System.out.println("Instrument with ID " + instr_id + " not found.");
             }
 
         } catch (NumberFormatException e) {
@@ -143,17 +157,19 @@ public class InstrumentController {
 
     @FXML
     private void updateInstrument() {
-        String id = idField1.getText();
+        String instr_id = idField1.getText();
         String name = nameField1.getText();
         String sound = soundField1.getText();
         String price = priceField1.getText();
+        String name_band = bandField1.getText();
 
         try {
-            Instrument instrument = daoInstrument.searchById(id);
+            Instrument instrument = daoInstrument.searchById(instr_id);
             if (instrument != null) {
                 instrument.setName(name);
                 instrument.setSound(sound);
                 instrument.setPrice(price);
+                instrument.setName_band(name_band);
                 //Llama al metodo update del DAO para actualizar Instrumento
                 daoInstrument.update(instrument);
                 resultLabel.setText("Instrumento actualizado.");
@@ -167,13 +183,14 @@ public class InstrumentController {
 
     @FXML
     private void searchInstrument() {
-        String id = idField1.getText();
+        String instr_id = idField1.getText();
         try {
-            Instrument instrument = daoInstrument.searchById(id);
+            Instrument instrument = daoInstrument.searchById(instr_id);
             if (instrument != null) {
                 nameField1.setText(instrument.getName());
                 soundField1.setText(instrument.getSound());
                 priceField1.setText(instrument.getPrice());
+                bandField1.setText(instrument.getName_band());
                 resultLabel.setText("Instrumento encontrado.");
             } else {
                 resultLabel.setText("Instrumento no encontrado.");
@@ -187,10 +204,11 @@ public class InstrumentController {
             List<Instrument> instruments = daoInstrument.findAll();
 
             // Asignar los valores a las columnas de la tabla
-            idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+            idColumn.setCellValueFactory(new PropertyValueFactory<>("instr_id"));
             nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
             soundColumn.setCellValueFactory(new PropertyValueFactory<>("sound"));
             priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
+            bandColumn.setCellValueFactory(new PropertyValueFactory<>("name_band"));
 
             // Agregar los instrumentos a la tabla
             instrumentTable.getItems().setAll(instruments);
@@ -198,6 +216,8 @@ public class InstrumentController {
             // Manejar el error
         }
     }
+
+
     @FXML
     private void loginButton() throws IOException {
         App.setRoot("login");

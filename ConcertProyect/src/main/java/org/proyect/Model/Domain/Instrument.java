@@ -3,17 +3,19 @@ package org.proyect.Model.Domain;
 import java.util.Objects;
 
 public class Instrument {
-    private String id;
+    private String instr_id;
     private String name1;
     private String sound;
     private String price;
 
-    public String getId() {
-        return id;
+    private String name_band;
+
+    public String getInstr_id() {
+        return instr_id;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setInstr_id(String id) {
+        this.instr_id = instr_id;
     }
 
     public String getName() {
@@ -40,11 +42,20 @@ public class Instrument {
         this.price = price;
     }
 
-    public Instrument(String id, String name1, String sound, String price) {
-        this.id = id;
+    public String getName_band() {
+        return name_band;
+    }
+
+    public void setName_band(String name_band) {
+        this.name_band = name_band;
+    }
+
+    public Instrument(String instr_id, String name1, String sound, String price, String name_band) {
+        this.instr_id = instr_id;
         this.name1 = name1;
         this.sound = sound;
         this.price = price;
+        this.name_band = name_band;
     }
 
     @Override
@@ -52,21 +63,23 @@ public class Instrument {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Instrument that = (Instrument) o;
-        return id == that.id && CharSequence.compare(that.price, price) == 0 && Objects.equals(name1, that.name1) && Objects.equals(sound, that.sound);
+        return instr_id == that.instr_id && CharSequence.compare(that.price, price) == 0 && Objects.equals(name1, that.name1) && Objects.equals(sound, that.sound);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name1, sound, price);
+        return Objects.hash(instr_id, name1, sound, price);
     }
 
     @Override
     public String toString() {
         return "Instrument{" +
-                "id=" + id +
+                "id=" + instr_id +
                 ", name='" + name1 + '\'' +
                 ", sound='" + sound + '\'' +
                 ", price=" + price +
                 '}';
     }
+
+
 }

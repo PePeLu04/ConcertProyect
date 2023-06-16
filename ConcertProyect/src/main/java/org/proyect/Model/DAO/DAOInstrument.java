@@ -1,6 +1,7 @@
 package org.proyect.Model.DAO;
 
 import org.proyect.Model.Connections.ConnectionMySql;
+import org.proyect.Model.Domain.Band;
 import org.proyect.Model.Domain.Instrument;
 
 import java.sql.Connection;
@@ -18,15 +19,18 @@ public class DAOInstrument implements DAO<Instrument> {
     public DAOInstrument() {
         this.conn= ConnectionMySql.getConnect();
     }
+    private DAO<Instrument> instrumentDAO;
+    private DAO<Band> bandDAO;
 
     @Override
     public Instrument insert(Instrument entity) throws SQLException {
         try {
-            PreparedStatement ps = conn.prepareStatement("INSERT INTO instruments (id, name, sound, price) VALUES (?, ?, ?, ?)");
-            ps.setString(1, entity.getId());
+            PreparedStatement ps = conn.prepareStatement("INSERT INTO instruments (instr_id, name, sound, price, name_band) VALUES (?, ?, ?, ?, (SELECT name from bands where name=?))");
+            ps.setString(1, entity.getInstr_id());
             ps.setString(2, entity.getName());
             ps.setString(3, entity.getSound());
             ps.setString(4, entity.getPrice());
+            ps.setString(5, entity.getName_band());
             ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -38,11 +42,12 @@ public class DAOInstrument implements DAO<Instrument> {
     @Override
     public Instrument update(Instrument entity) throws SQLException {
         try {
-            PreparedStatement ps = conn.prepareStatement("UPDATE instruments SET name = ?, sound = ?, price = ? WHERE id = ?");
+            PreparedStatement ps = conn.prepareStatement("UPDATE instruments SET name = ?, sound = ?, price = ? + name_band=(SELECT name FROM bands WHERE name=?) WHERE instr_id = ?");
             ps.setString(1, entity.getName());
             ps.setString(2, entity.getSound());
             ps.setString(3, entity.getPrice());
-            ps.setString(4, entity.getId());
+            ps.setString(4, entity.getInstr_id());
+            ps.setString(5, entity.getName_band());
             ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -53,7 +58,7 @@ public class DAOInstrument implements DAO<Instrument> {
 
     @Override
     public void delete(String instrument) throws SQLException {
-        String sql = "DELETE FROM instruments WHERE id = ?";
+        String sql = "DELETE FROM instruments WHERE instr_id = ?";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, instrument);
 
@@ -63,18 +68,18 @@ public class DAOInstrument implements DAO<Instrument> {
     }
 
     @Override
-    public Instrument searchById(String id) throws SQLException {
-        String sql = "SELECT * FROM instruments WHERE id = ?";
+    public Instrument searchById(String instr_id) throws SQLException {
+        String sql = "SELECT * FROM instruments WHERE instr_id = ?";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setString(1, id);
+            stmt.setString(1, instr_id);
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
                     return new Instrument(
-                            rs.getString("id"),
+                            rs.getString("instr_id"),
                             rs.getString("name"),
                             rs.getString("sound"),
-                            rs.getString("price")
-                    );
+                            rs.getString("price"),
+                            rs.getString("name_band"));
                 }
             }
         }
@@ -87,11 +92,12 @@ public class DAOInstrument implements DAO<Instrument> {
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
-                    String id = rs.getString("id");
+                    String instr_id = rs.getString("instr_id");
                     String name = rs.getString("name");
                     String sound = rs.getString("sound");
                     String price = rs.getString("price");
-                    Instrument instrument = new Instrument(id, name, sound, price);
+                    String band = rs.getString("name_band");
+                    Instrument instrument = new Instrument(instr_id, name, sound, price, band);
                     instruments.add(instrument);
                 }
             }
