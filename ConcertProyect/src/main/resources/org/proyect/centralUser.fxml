@@ -20,10 +20,10 @@
             </contextMenu>
         </Label>
         <VBox layoutX="14.0" layoutY="16.0" spacing="10">
-            <Button fx:id="menuButton" onAction="#toggleMenu" text="☰" />
+            <Button fx:id="menuButton" onAction="#toggleMenu" style="-fx-font-size: 24px;" text="☰" />
             <VBox fx:id="menu" spacing="5" visible="false">
-                <Button onAction="#switchToSecondaryUser" text="Bandas" />
-                <Button onAction="#switchToThirdUser" text="Instrumentos" />
+                <Button onAction="#switchToSecondaryUser" style="-fx-font-size: 16px;" text="Bandas" />
+                <Button onAction="#switchToThirdUser" style="-fx-font-size: 16px;" text="Instrumentos" />
             </VBox>
         </VBox>
 
@@ -34,7 +34,7 @@
         <Label layoutX="930.0" layoutY="278.0" GridPane.columnIndex="0" GridPane.rowIndex="2" />
 
         <Label layoutX="921.0" layoutY="319.0" GridPane.columnIndex="0" GridPane.rowIndex="3" />
-        <TableView fx:id="instrumentTable" layoutX="100.0" layoutY="111.0" prefHeight="497.0" prefWidth="673.0">
+        <TableView fx:id="instrumentTable" layoutX="128.0" layoutY="157.0" prefHeight="497.0" prefWidth="673.0">
             <columns>
                 <TableColumn fx:id="idColumn" prefWidth="52.99999237060547" text="ID" />
                 <TableColumn fx:id="nameColumn" prefWidth="153.39999389648438" text="Nombre" />
@@ -48,7 +48,7 @@
             <font>
                 <Font name="Calibri" size="16.0" />
             </font></Button>
-      <TitledPane layoutX="821.0" layoutY="187.0" prefHeight="300.0" prefWidth="200.0" text="Insertar">
+      <TitledPane expanded="false" layoutX="845.0" layoutY="187.0" prefHeight="300.0" prefWidth="200.0" text="Insertar">
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>

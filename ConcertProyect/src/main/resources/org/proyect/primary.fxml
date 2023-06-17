@@ -5,13 +5,13 @@
 <?import javafx.scene.text.*?>
 
 <AnchorPane prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.proyect.Controller.PrimaryController">
+
    <children>
-      <VBox layoutX="55.0" layoutY="45.0" spacing="10">
-         <Button fx:id="menuButton" onAction="#toggleMenu" prefHeight="32.0" prefWidth="31.0" text="☰" />
+      <VBox layoutX="55.0" layoutY="48.0" spacing="10">
+         <Button fx:id="menuButton" onAction="#toggleMenu" style="-fx-font-size: 24px;" text="☰" />
          <VBox fx:id="menu" spacing="5" visible="false">
-            <Button onAction="#switchToSecondary" text="Bandas" />
-            <Button onAction="#switchToThird" text="Instrumentos" />
-            <Button onAction="#switchToNM" text="NM" />
+            <Button onAction="#switchToSecondary" style="-fx-font-size: 16px;" text="Bandas" />
+            <Button onAction="#switchToThird" style="-fx-font-size: 16px;" text="Instrumentos" />
          </VBox>
       </VBox>
 
@@ -22,4 +22,5 @@
       </Label>
       <Button layoutX="912.0" layoutY="68.0" onAction="#loginButton" prefHeight="26.0" prefWidth="64.0" text="Login" />
    </children>
+
 </AnchorPane>

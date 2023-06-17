@@ -6,8 +6,7 @@
 
 <AnchorPane prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #5999D9;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.proyect.Controller.BandController">
 
-
-    <Label layoutX="320.0" layoutY="53.0" prefHeight="44.0" prefWidth="94.0" text="Bandas">
+    <Label layoutX="320.0" layoutY="53.0" prefHeight="44.0" prefWidth="94.0" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Bandas">
         <contextMenu>
             <ContextMenu>
                 <items>
@@ -15,16 +14,16 @@
                 </items>
             </ContextMenu>
         </contextMenu>
-      <font>
-         <Font name="Franklin Gothic Medium Italic" size="20.0" />
-      </font>
+        <font>
+            <Font name="Franklin Gothic Medium Italic" size="20.0" />
+        </font>
     </Label>
 
     <VBox layoutX="47.0" layoutY="29.0" prefHeight="98.0" prefWidth="94.0" spacing="10">
-        <Button fx:id="menuButton" onAction="#toggleMenu" text="☰" />
+        <Button fx:id="menuButton" onAction="#toggleMenu" style="-fx-font-size: 24px;" text="☰" />
         <VBox fx:id="menu" spacing="5" visible="false">
-            <Button onAction="#switchToSecondaryUser" text="Bandas" />
-            <Button onAction="#switchToThirdUser" text="Instrumentos" />
+            <Button onAction="#switchToSecondaryUser" style="-fx-font-size: 16px;" text="Bandas" />
+            <Button onAction="#switchToThirdUser" style="-fx-font-size: 16px;" text="Instrumentos" />
         </VBox>
     </VBox>
 
@@ -33,7 +32,7 @@
     <Label layoutX="405.0" layoutY="138.0" GridPane.columnIndex="0" GridPane.rowIndex="1" />
 
     <Label layoutX="406.0" layoutY="182.0" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-    <TableView fx:id="bandTable" layoutX="66.0" layoutY="126.0" prefHeight="466.0" prefWidth="602.0">
+    <TableView fx:id="bandTable" layoutX="66.0" layoutY="200.0" prefHeight="466.0" prefWidth="602.0">
         <columns>
             <TableColumn fx:id="idColumn" prefWidth="128.0" text="ID" />
             <TableColumn fx:id="nameColumn" prefWidth="199.1999969482422" text="Nombre" />
@@ -42,20 +41,19 @@
     </TableView>
 
     <Label fx:id="resultLabel" GridPane.columnIndex="0" GridPane.columnSpan="3" GridPane.rowIndex="4" />
-    <Button layoutX="934.0" layoutY="49.0" onAction="#loginButton" prefHeight="26.0" prefWidth="86.0" text="Login" />
-   <TitledPane expanded="false" layoutX="775.0" layoutY="200.0" text="Insertar">
-     <content>
-       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-            <children>
-                <TextField fx:id="idField" layoutX="25.0" layoutY="8.0" promptText="ID" />
-                <TextField fx:id="nameField" layoutX="25.0" layoutY="52.0" promptText="Nombre" />
-                <TextField fx:id="componentsField" layoutX="25.0" layoutY="96.0" promptText="Componentes" />
-            
-                <Button layoutX="81.0" layoutY="146.0" onAction="#insertBand" text="Add" />
-            </children>
-         </AnchorPane>
-     </content>
-   </TitledPane>
+    <Button layoutX="934.0" layoutY="49.0" onAction="#loginButton" style="-fx-font-size: 16px;" text="Login" />
+    <TitledPane layoutX="775.0" layoutY="200.0" prefHeight="230.0" prefWidth="202.0" text="Insertar">
+        <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                <children>
+                    <TextField fx:id="idField" layoutX="25.0" layoutY="8.0" promptText="ID" />
+                    <TextField fx:id="nameField" layoutX="25.0" layoutY="52.0" promptText="Nombre" />
+                    <TextField fx:id="componentsField" layoutX="25.0" layoutY="96.0" promptText="Componentes" />
 
+                    <Button layoutX="81.0" layoutY="146.0" onAction="#insertBand" style="-fx-font-size: 16px;" text="Add" />
+                </children>
+            </AnchorPane>
+        </content>
+    </TitledPane>
 
 </AnchorPane>

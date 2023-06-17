@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DAOBand implements DAO<Band> {
+public class DAOBand extends DAO<Band> {
     private Connection conn;
     public DAOBand(Connection conn) {
         this.conn = conn;

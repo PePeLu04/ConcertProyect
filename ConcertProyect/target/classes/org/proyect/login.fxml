@@ -1,21 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox alignment="CENTER" prefHeight="400.0" prefWidth="600.0" spacing="10" style="-fx-background-color: #07ECE9;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.proyect.Controller.LoginController">
-    <padding>
-        <Insets bottom="100" left="50" right="50" top="100" />
-    </padding>
-   <Label prefHeight="30.0" prefWidth="79.0" style="-fx-font-size: 20;" text="Concerts" />
+<VBox alignment="CENTER" prefHeight="287.0" prefWidth="276.0" spacing="10" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.proyect.Controller.LoginController">
+    <children>
+        <Label style="-fx-font-size: 30px; -fx-font-weight: bold;" text="Concerts" />
+        <Label style="-fx-font-size: 20px;" text="Inicio de sesión" />
 
-    <Label style="-fx-font-size: 20px;" text="Inicio de sesión" />
+        <TextField fx:id="usernameField" maxWidth="200.0" promptText="Usuario" />
+        <PasswordField fx:id="passwordField" maxWidth="200.0" promptText="Contraseña" text="1234" />
+        <TextField fx:id="dniField" maxWidth="200.0" promptText="DNI" />
 
-    <TextField fx:id="usernameField" alignment="TOP_CENTER" maxWidth="200.0" promptText="Usuario" />
-    <PasswordField fx:id="passwordField" alignment="TOP_CENTER" maxWidth="200.0" promptText="Contraseña" text="1234" />
-    <TextField fx:id="dniField" alignment="TOP_CENTER" maxWidth="200.0" promptText="DNI" />
-
-    <Button onAction="#login" text="Iniciar sesión" />
-    <Button onAction="#createAccount" text="Crear cuenta" />
+        <HBox alignment="CENTER" spacing="10">
+            <Button onAction="#login" style="-fx-font-size: 16px; -fx-pref-width: 120px;" text="Iniciar sesión" />
+            <Button onAction="#createAccount" style="-fx-font-size: 16px; -fx-pref-width: 120px;" text="Crear cuenta" />
+        </HBox>
+    </children>
 </VBox>

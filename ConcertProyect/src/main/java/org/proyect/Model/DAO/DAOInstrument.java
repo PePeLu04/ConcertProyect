@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DAOInstrument implements DAO<Instrument> {
+public class DAOInstrument extends DAO<Instrument> {
     private Connection conn;
     public DAOInstrument(Connection conn) {
         this.conn = conn;
