@@ -7,11 +7,14 @@ public class User extends Person{
     private String password;
     private String role;
 
-    public User(String id, String mail, String dni, String username, String password, String role) {
-        super(id, mail, dni);
+    private String name_band;
+
+    public User(String id, String dni, String username, String password, String role, String name_band) {
+        super(id, dni);
         this.username = username;
         this.password = password;
         this.role = role;
+        this.name_band = name_band;
     }
 
     public String getUsername() {
@@ -36,6 +39,14 @@ public class User extends Person{
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public String getName_band() {
+        return name_band;
+    }
+
+    public void setName_band(String name_band) {
+        this.name_band = name_band;
     }
 
     @Override

@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #5999D9;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.proyect.Controller.BandController">
+<AnchorPane prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #798ABF;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.proyect.Controller.BandController">
 
     <Label layoutX="320.0" layoutY="53.0" prefHeight="44.0" prefWidth="94.0" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Bandas">
         <contextMenu>
@@ -42,7 +42,7 @@
 
     <Label fx:id="resultLabel" GridPane.columnIndex="0" GridPane.columnSpan="3" GridPane.rowIndex="4" />
     <Button layoutX="934.0" layoutY="49.0" onAction="#loginButton" style="-fx-font-size: 16px;" text="Login" />
-    <TitledPane layoutX="775.0" layoutY="200.0" prefHeight="230.0" prefWidth="202.0" text="Insertar">
+    <TitledPane expanded="false" layoutX="775.0" layoutY="200.0" prefHeight="230.0" prefWidth="202.0" text="Insertar">
         <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                 <children>

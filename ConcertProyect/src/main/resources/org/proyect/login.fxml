@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox alignment="CENTER" prefHeight="287.0" prefWidth="276.0" spacing="10" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.proyect.Controller.LoginController">
+<VBox style="-fx-background-color: #8FC3A0;" alignment="CENTER" prefHeight="287.0" prefWidth="276.0" spacing="10" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.proyect.Controller.LoginController">
     <children>
         <Label style="-fx-font-size: 30px; -fx-font-weight: bold;" text="Concerts" />
         <Label style="-fx-font-size: 20px;" text="Inicio de sesión" />
