@@ -13,9 +13,18 @@ import java.util.List;
 
 public class DAOUser extends DAO<User> {
     private Connection conn;
+    /**
+     * Constructor que acepta una conexión de base de datos como parámetro.
+     *
+     * @param conn La conexión de base de datos
+     */
     public DAOUser(Connection conn) {
         this.conn = conn;
     }
+    /**
+     * Constructor predeterminado que utiliza una conexión de base de datos predefinida.
+     * Obtener una conexión de base de datos utilizando ConnectionMySql.getConnect().
+     */
     public DAOUser() {
         this.conn= ConnectionMySql.getConnect();
     }
@@ -25,7 +34,7 @@ public class DAOUser extends DAO<User> {
     @Override
     public User insert(User entity) throws SQLException {
         try {
-            PreparedStatement ps = conn.prepareStatement("INSERT INTO users (id, username, password, role, dni, name_band) VALUES (?, ?, ?, ?, ? (SELECT name from bands where name=?))");
+            PreparedStatement ps = conn.prepareStatement("INSERT INTO users (id, username, password, role, dni, name_band) VALUES (?, ?, ?, ?, ?, (SELECT name FROM bands where name=?))");
             ps.setString(1, entity.getId());
             ps.setString(2, entity.getUsername());
             ps.setString(3, entity.getPassword());

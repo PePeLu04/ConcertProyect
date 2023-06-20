@@ -28,29 +28,53 @@ public class LoginController {
 
     private Connection connection;
     private static Scene scene;
+    /**
+     * Establece la ventana principal de la aplicación.
+     *
+     * @param stage La ventana principal
+     */
     private Stage stage;
 
     public void setStage(Stage stage) {
         this.stage = stage;
     }
 
+    /**
+     * Método inicializador del controlador.
+     * Se ejecuta automáticamente al cargar el controlador y establece la conexión a la base de datos.
+     */
     public void initialize() {
         // Establecer la conexión a la base de datos
         connection = ConnectionMySql.getConnect();
     }
 
+    /**
+     * Maneja el evento de inicio de sesión.
+     *
+     * @param event El evento de acción del botón de inicio de sesión
+     * @throws IOException  Si ocurre un error de E/S durante la redirección de la vista
+     * @throws SQLException Si ocurre un error de SQL durante la verificación de las credenciales
+     */
     @FXML
     private void login(ActionEvent event) throws IOException, SQLException {
         String username = usernameField.getText();
         String password = passwordField.getText();
         String dni = dniField.getText();
 
-        //Asigna los roles para llegar a una vista diferente creada posteriormente
+        // Verificar las credenciales de inicio de sesión
             if (handleLogin(username, password, dni)) {
                 showAlert("Login Correcto","Bienvenido" + username);
             }
     }
 
+    /**
+     * Verifica las credenciales de inicio de sesión en la base de datos.
+     *
+     * @param username El nombre de usuario
+     * @param password La contraseña
+     * @param dni      El DNI
+     * @return true si las credenciales son válidas y se cambia a la interfaz correspondiente, false en caso contrario
+     */
     private boolean handleLogin(String username, String password, String dni) {
 
         // Verificar las credenciales en la base de datos
@@ -86,14 +110,33 @@ public class LoginController {
         return false;
     }
 
+    /**
+     * Cambia a la interfaz de usuario.
+     *
+     * @throws IOException Si ocurre un error de E/S durante la redirección de la vista
+     */
     @FXML
     private void switchToUser() throws IOException {
         App.setRoot("primaryuser");
     }
+    /**
+     * Cambia a la interfaz de administrador.
+     *
+     * @throws IOException Si ocurre un error de E/S durante la redirección de la vista
+     */
     @FXML
     private void switchToAdmin() throws IOException {
         App.setRoot("primary");
     }
+
+    /**
+     * Crea un nuevo usuario en la base de datos.
+     *
+     * @param username El nombre de usuario
+     * @param password La contraseña
+     * @param dni      El DNI
+     * @return true si el usuario se crea correctamente, false en caso contrario
+     */
 
     private boolean handleCreateUser(String username, String password, String dni) {
 
@@ -116,11 +159,21 @@ public class LoginController {
         return false;
     }
 
+    /**
+     * Limpia los campos de texto.
+     */
+
     private void clearFields() {
         usernameField.clear();
         passwordField.clear();
         dniField.clear();
     }
+
+    /**
+     * Maneja la creación de una nueva cuenta de usuario.
+     *
+     * @param event El evento de acción del botón de creación de cuenta
+     */
     @FXML
     private void createAccount(ActionEvent event) {
         String username = usernameField.getText();
@@ -133,7 +186,12 @@ public class LoginController {
         }
     }
 
-
+    /**
+     * Muestra una ventana emergente de alerta con el título y el mensaje especificados.
+     *
+     * @param title   El título de la alerta
+     * @param message El mensaje de la alerta
+     */
     private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);

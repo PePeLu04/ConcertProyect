@@ -13,9 +13,18 @@ import java.util.List;
 
 public class DAOInstrument extends DAO<Instrument> {
     private Connection conn;
+    /**
+     * Constructor que acepta una conexión de base de datos como parámetro.
+     *
+     * @param conn La conexión de base de datos
+     */
     public DAOInstrument(Connection conn) {
         this.conn = conn;
     }
+    /**
+     * Constructor predeterminado que utiliza una conexión de base de datos predefinida.
+     * Obtener una conexión de base de datos utilizando ConnectionMySql.getConnect().
+     */
     public DAOInstrument() {
         this.conn= ConnectionMySql.getConnect();
     }

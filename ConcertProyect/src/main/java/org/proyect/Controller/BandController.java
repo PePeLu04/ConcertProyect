@@ -17,6 +17,9 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * Controlador para la vista de gestión de bandas.
+ */
 public class BandController {
     @FXML
     private TableView<Band> bandTable;
@@ -27,8 +30,12 @@ public class BandController {
     @FXML
     private TableColumn<Band, String> componentsColumn;
 
+    // Otros componentes de la interfaz de usuario
+
     @FXML
     private Label resultLabel;
+
+    // Declaración de otros campos de texto
     @FXML
     private TextField idField;
 
@@ -51,7 +58,7 @@ public class BandController {
 
     @FXML
     private TextField componentsField1;
-    DAOBand daoBand = new DAOBand();
+    DAOBand daoBand = new DAOBand(); // Instancia de DAOBand para interactuar con la base de datos
     @FXML
     private Button menuButton;
 
@@ -59,17 +66,26 @@ public class BandController {
     private VBox menu;
     private ScheduledExecutorService scheduler;
     private static final int UPDATE_INTERVAL = 1;
+    /**
+     * Método de inicialización que se ejecuta al cargar la vista.
+     */
     public void initialize() {
         scheduler = Executors.newSingleThreadScheduledExecutor();
         scheduler.scheduleAtFixedRate(this::searchAllBands, 0, UPDATE_INTERVAL, TimeUnit.SECONDS);
-        menuButton.setOnAction(event -> toggleMenu());
+        // Inicialización del scheduler para ejecutar periódicamente searchAllBands()
+        menuButton.setOnAction(event -> toggleMenu());  // Asignación de un controlador de eventos al botón menuButton
     }
 
 
+    /**
+     * Método para mostrar u ocultar el menú.
+     */
     @FXML
     private void toggleMenu() {
         menu.setVisible(!menu.isVisible());
     }
+
+    // Métodos para cambiar a diferentes vistas de la aplicación
     @FXML
     private void switchToSecondary() throws IOException {
         App.setRoot("band");
@@ -89,8 +105,12 @@ public class BandController {
         App.setRoot("centralUser");
     }
 
-
-
+    /**
+     * Método para insertar una banda en la base de datos.
+     *
+     * @param event Evento que desencadena la acción.
+     * @return La banda insertada, o null si no se pudo insertar.
+     */
     @FXML
     private Band insertBand(ActionEvent event) {
         try {
@@ -115,6 +135,11 @@ public class BandController {
         return null;
     }
 
+    /**
+     * Método para eliminar una banda de la base de datos.
+     *
+     * @param event Evento que desencadena la acción.
+     */
     @FXML
     private void deleteBand(ActionEvent event) {
         try {
@@ -138,6 +163,9 @@ public class BandController {
         }
     }
 
+    /**
+     * Método para actualizar la información de una banda en la base de datos.
+     */
     @FXML
     private void updateBand() {
         String band_id = idField1.getText();
@@ -160,6 +188,11 @@ public class BandController {
         }
     }
 
+    /**
+     * Método para buscar y mostrar la información de una banda en la interfaz de usuario.
+     *
+     * @throws SQLException Si ocurre un error al acceder a la base de datos.
+     */
     @FXML
     private void searchBand() throws SQLException {
         String band_id = idField1.getText();
@@ -177,6 +210,9 @@ public class BandController {
         }
     }
 
+    /**
+     * Método para buscar y mostrar la información de todas las bandas en la interfaz de usuario.
+     */
     public void searchAllBands() {
         try {
             List<Band> bands = daoBand.findAll();

@@ -4,23 +4,87 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.proyect.Controller.PrimaryController">
-
-   <children>
-      <VBox layoutX="55.0" layoutY="48.0" spacing="10">
-         <Button fx:id="menuButton" onAction="#toggleMenu" style="-fx-font-size: 24px;" text="☰" />
-         <VBox fx:id="menu" spacing="5" visible="false">
-            <Button onAction="#switchToSecondary" style="-fx-font-size: 16px;" text="Bandas" />
-            <Button onAction="#switchToThird" style="-fx-font-size: 16px;" text="Instrumentos" />
+<AnchorPane xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.proyect.Controller.PrimaryController">
+<children>
+   <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #798ABF;">
+      <children>
+         <Label layoutX="464.0" layoutY="40.0" prefHeight="44.0" prefWidth="151.0" style="-fx-font-size: 18px; -fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold;" text="Usuarios">
+            <font>
+               <Font name="Comic Sans MS Bold" size="18.0" />
+            </font>
+            <contextMenu>
+               <ContextMenu>
+                  <items>
+                     <MenuItem mnemonicParsing="false" text="Unspecified Action" />
+                  </items>
+               </ContextMenu>
+            </contextMenu>
+         </Label>
+         <VBox layoutX="14.0" layoutY="16.0" spacing="10">
+            <Button fx:id="menuButton" onAction="#toggleMenu" style="-fx-font-size: 24px;" text="☰" />
+            <VBox fx:id="menu" spacing="5" visible="false">
+               <Button onAction="#switchToSecondary" style="-fx-font-size: 16px;" text="Bandas" />
+               <Button onAction="#switchToThird" style="-fx-font-size: 16px;" text="Instrumentos" />
+            </VBox>
          </VBox>
-      </VBox>
-
-      <Label alignment="TOP_CENTER" centerShape="false" depthTest="ENABLE" layoutX="435.0" layoutY="325.0" mouseTransparent="true" prefHeight="69.0" prefWidth="209.0" text="Concerts">
-         <font>
-            <Font name="Corbel Light Italic" size="50.0" />
-         </font>
-      </Label>
-      <Button layoutX="912.0" layoutY="68.0" onAction="#loginButton" prefHeight="26.0" prefWidth="64.0" text="Login" />
-   </children>
-
+         <TableView fx:id="userTable" layoutX="226.0" layoutY="142.0" prefHeight="418.0" prefWidth="628.0">
+            <columns>
+               <TableColumn fx:id="idColumn" prefWidth="53.0" text="ID" />
+               <TableColumn fx:id="usernameColumn" prefWidth="118.19998168945312" text="Usuario" />
+               <TableColumn fx:id="passwordColumn" prefWidth="138.39999389648438" text="Contraseña" />
+               <TableColumn fx:id="roleColumn" prefWidth="83.40005493164062" text="Role" />
+               <TableColumn fx:id="dniColumn" prefWidth="115.20001220703125" text="DNI" />
+               <TableColumn fx:id="bandColumn" prefWidth="116.79998779296875" text="Banda" />
+            </columns>
+         </TableView>
+         <Label fx:id="resultLabel" GridPane.columnIndex="0" GridPane.columnSpan="3" GridPane.rowIndex="4" />
+         <Button layoutX="946.0" layoutY="44.0" onAction="#loginButton" prefHeight="30.0" prefWidth="80.0" style="-fx-font-size: 16px; -fx-text-fill: #369ec1;" text="Login">
+            <font>
+               <Font name="Calibri" size="16.0" />
+            </font>
+         </Button>
+         <TitledPane expanded="false" layoutX="11.0" layoutY="210.0" prefHeight="250.0" prefWidth="202.0" text="Actualizar">
+            <content>
+               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="224.0" prefWidth="209.0">
+                  <children>
+                     <TextField fx:id="idField1" layoutX="26.0" layoutY="14.0" promptText="ID" />
+                     <TextField fx:id="usernameField1" layoutX="26.0" layoutY="40.0" promptText="Usuario" />
+                     <TextField fx:id="passwordField1" layoutX="26.0" layoutY="66.0" promptText="Contraseña" />
+                     <TextField fx:id="roleField1" layoutX="26.0" layoutY="92.0" promptText="Role" />
+                     <TextField fx:id="dniField1" layoutX="26.0" layoutY="118.0" promptText="Dni" />
+                     <TextField fx:id="bandField1" layoutX="26.0" layoutY="144.0" promptText="Banda" />
+                     <Button layoutX="18.0" layoutY="173.0" onAction="#searchUser" style="-fx-font-size: 16px;" text="Buscar" />
+                     <Button layoutX="93.0" layoutY="173.0" onAction="#updateUser" style="-fx-font-size: 16px;" text="Actualizar" />
+                  </children>
+               </AnchorPane>
+            </content>
+         </TitledPane>
+         <TitledPane expanded="false" layoutX="11.0" layoutY="475.0" prefHeight="150.0" text="Eliminar">
+            <content>
+               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                  <children>
+                     <TextField fx:id="idField3" layoutX="24.0" layoutY="20.0" promptText="ID" />
+                     <Button layoutX="68.0" layoutY="70.0" onAction="#deleteUser" style="-fx-font-size: 16px;" text="Eliminar" />
+                  </children>
+               </AnchorPane>
+            </content>
+         </TitledPane>
+         <TitledPane expanded="false" layoutX="866.0" layoutY="175.0" prefHeight="339.0" prefWidth="200.0" text="Insertar">
+            <content>
+               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="316.0" prefWidth="198.0">
+                  <children>
+                     <TextField fx:id="idField" layoutX="23.0" layoutY="14.0" promptText="ID" />
+                     <TextField fx:id="usernameField" layoutX="23.0" layoutY="56.0" promptText="Usuario" />
+                     <TextField fx:id="passwordField" layoutX="23.0" layoutY="99.0" promptText="Contraseña" />
+                     <TextField fx:id="roleField" layoutX="23.0" layoutY="144.0" promptText="Role" />
+                     <TextField fx:id="dniField" layoutX="24.0" layoutY="185.0" promptText="Dni" />
+                     <TextField fx:id="bandField" layoutX="23.0" layoutY="226.0" promptText="Banda" />
+                     <Button layoutX="62.0" layoutY="262.0" onAction="#insertUser" style="-fx-font-size: 16px;" text="Insertar" />
+                  </children>
+               </AnchorPane>
+            </content>
+         </TitledPane>
+      </children>
+   </AnchorPane>
+</children>
 </AnchorPane>

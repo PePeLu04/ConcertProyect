@@ -17,6 +17,9 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * Controlador para la vista de gestión de instrumentos.
+ */
 public class InstrumentController {
 
     @FXML
@@ -74,6 +77,9 @@ public class InstrumentController {
     private VBox menu;
     private ScheduledExecutorService scheduler;
     private static final int UPDATE_INTERVAL = 1;
+    /**
+     * Método de inicialización que se ejecuta al cargar la vista.
+     */
     public void initialize() {
         scheduler = Executors.newSingleThreadScheduledExecutor();
         scheduler.scheduleAtFixedRate(this::searchAllInstruments, 0, UPDATE_INTERVAL, TimeUnit.SECONDS);
@@ -104,9 +110,14 @@ public class InstrumentController {
         App.setRoot("centralUser");
     }
 
-    DAOInstrument daoInstrument = new DAOInstrument();
+    DAOInstrument daoInstrument = new DAOInstrument(); // Instancia de DAOInstrument para interactuar con la base de datos
 
-
+    /**
+     * Método para insertar un instrumento en la base de datos.
+     *
+     * @param event Evento que desencadena la acción.
+     * @return El instrumento insertado, o null si no se pudo insertar.
+     */
     @FXML
     private Instrument insertInstrument(ActionEvent event) {
         try {
@@ -132,6 +143,12 @@ public class InstrumentController {
         }
         return null;
     }
+
+    /**
+     * Método para eliminar un instrumento de la base de datos.
+     *
+     * @param event Evento que desencadena la acción.
+     */
     @FXML
     private void deleteInstrument(ActionEvent event) {
         try {
@@ -155,6 +172,9 @@ public class InstrumentController {
         }
     }
 
+    /**
+     * Método para actualizar la información de un instrumento en la base de datos.
+     */
     @FXML
     private void updateInstrument() {
         String instr_id = idField1.getText();
@@ -181,6 +201,9 @@ public class InstrumentController {
         }
     }
 
+    /**
+     * Método para buscar y mostrar la información de un instrumento en la interfaz de usuario.
+     */
     @FXML
     private void searchInstrument() {
         String instr_id = idField1.getText();
@@ -199,6 +222,10 @@ public class InstrumentController {
             resultLabel.setText("Error al buscar el instrumento.");
         }
     }
+
+    /**
+     * Método para buscar y mostrar la información de todos los instrumentos en la interfaz de usuario.
+     */
     public void searchAllInstruments() {
         try {
             List<Instrument> instruments = daoInstrument.findAll();
@@ -217,7 +244,11 @@ public class InstrumentController {
         }
     }
 
-
+    /**
+     * Método para manejar el evento del botón de inicio de sesión.
+     *
+     * @throws IOException Si ocurre un error al cambiar a la vista de inicio de sesión.
+     */
     @FXML
     private void loginButton() throws IOException {
         App.setRoot("login");

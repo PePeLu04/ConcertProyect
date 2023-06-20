@@ -9,7 +9,7 @@ public class User extends Person{
 
     private String name_band;
 
-    public User(String id, String dni, String username, String password, String role, String name_band) {
+    public User(String id, String username, String password, String role, String dni, String name_band) {
         super(id, dni);
         this.username = username;
         this.password = password;
